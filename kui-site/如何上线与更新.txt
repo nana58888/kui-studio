@@ -1,0 +1,32 @@
+KUI.STUDIO 网站 — 上线与更新说明
+==================================
+
+文件夹结构(不要改动层级):
+  kui-site/
+  ├── index.html        ← 网页本体,必须在最外层
+  ├── images/           ← 作品照片
+  │   ├── 01.jpg ~ 06.jpg   现在是占位图,换成你的作品即可
+  └── 如何上线与更新.txt   ← 本说明,可不上传
+
+
+【A. 用 GitHub Pages 上线】
+1. github.com 注册/登录 → 右上「+」→ New repository
+2. 名字填 kui-studio,选 Public,点 Create repository
+3. 直接打开这个网址(把 用户名 换成你自己的):
+     https://github.com/用户名/kui-studio/upload/main
+   把 index.html 和 images 文件夹一起拖进去 → Commit changes
+4. 仓库 Settings → Pages → Branch 选 main / (root) → Save
+5. 等 1–2 分钟,页面顶部出现网址:
+     https://用户名.github.io/kui-studio/
+
+【B. 以后改内容】
+· 改文字/价格:仓库里点开 index.html → 右上铅笔图标 → 改 → Commit
+· 换照片:进 images 文件夹 → 删旧图 → Upload 新图,
+  只要文件名还是 01.jpg~06.jpg,网页自动替换,不用改代码
+
+【换照片前记得压缩】
+每张压到 500KB 以内:把图片拖到 tinypng.com,下载后再上传。
+
+【联系方式】
+index.html 里搜索 CONTACT 可找到 IG / 小红书 / 微信 / 邮箱链接,
+按需替换成你自己的账号。

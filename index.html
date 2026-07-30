@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUI.STUDIO — 伦敦跟拍 / London Photography</title>
+<meta name="description" content="KUI.STUDIO — 伦敦城市跟拍与人像摄影。基础陪拍 £40/小时起,专业摄影师 £90/小时起,首席摄影师 £120/小时起。毕业写真 £499,婚纱写真 £599。底片全送。London-based portrait and city photography.">
+
+<!-- ============================================================
+     KUI.STUDIO — 单文件网站
+     换图:把照片放进同目录的 images/ 文件夹,命名 01.jpg ... 06.jpg
+     改价:搜索 "PRICE" 三处
+     改联系方式:搜索 "CONTACT"
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#16181A;
+    --card:#E4E5E0;        /* 18% 灰卡 */
+    --white:#FBFBF9;
+    --grey:#6E7370;
+    --red:#E23D2B;         /* 片头计数红 */
+    --line:rgba(22,24,26,.14);
+    --display:'Archivo','Noto Sans SC',sans-serif;
+    --body:'Noto Sans SC','Archivo',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--card);color:var(--ink);
+    font-family:var(--body);font-weight:300;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--red);color:var(--white)}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+  /* ---------- 顶部数据条 ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:16px;padding:10px 20px;
+    background:var(--ink);color:var(--white);
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  }
+  .topbar .meta{display:flex;gap:18px;opacity:.72}
+  .topbar .meta span:nth-child(2){display:none}
+  .brandmark{color:var(--white);font-weight:500;letter-spacing:.14em}
+  .brandmark b{color:var(--red);font-weight:500}
+  .lang{
+    display:flex;gap:2px;border:1px solid rgba(251,251,249,.28);
+  }
+  .lang button{
+    background:none;border:0;cursor:pointer;
+    color:var(--white);opacity:.5;
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    padding:3px 9px;
+  }
+  .lang button.on{background:var(--red);opacity:1}
+
+  /* ---------- 取景器 Hero ---------- */
+  .hero{
+    position:relative;background:var(--ink);color:var(--white);
+    padding:clamp(64px,11vw,132px) 20px clamp(40px,6vw,64px);
+    overflow:hidden;
+  }
+  .hero::after{ /* 胶片颗粒 */
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  }
+  .finder{position:relative;max-width:1080px;margin:0 auto;z-index:2}
+  .bracket{position:absolute;width:26px;height:26px;border:2px solid var(--red);opacity:.9}
+  .bracket.tl{top:-26px;left:-8px;border-right:0;border-bottom:0}
+  .bracket.tr{top:-26px;right:-8px;border-left:0;border-bottom:0}
+  .bracket.bl{bottom:-26px;left:-8px;border-right:0;border-top:0}
+  .bracket.br{bottom:-26px;right:-8px;border-left:0;border-top:0}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+    color:var(--red);margin-bottom:22px;
+  }
+  h1{
+    font-family:var(--display);font-weight:800;
+    font-size:clamp(34px,6.6vw,74px);line-height:1.02;
+    letter-spacing:-.02em;max-width:15ch;
+  }
+  h1 em{font-style:normal;color:var(--red)}
+  .hero p.sub{
+    margin-top:24px;max-width:44ch;font-size:16px;
+    color:rgba(251,251,249,.72);font-weight:300;
+  }
+  .exif{
+    display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:38px;
+    padding-top:16px;border-top:1px solid rgba(251,251,249,.16);
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    color:rgba(251,251,249,.55);
+  }
+  .cta{
+    display:inline-block;margin-top:34px;
+    background:var(--red);color:var(--white);
+    font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+    padding:15px 30px;transition:transform .18s ease,background .18s ease;
+  }
+  .cta:hover{background:var(--white);color:var(--ink);transform:translateY(-2px)}
+
+  /* ---------- 通用区块 ---------- */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  section.band{padding:clamp(56px,8vw,104px) 0}
+  .label{
+    display:flex;align-items:center;gap:14px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    color:var(--grey);margin-bottom:34px;
+  }
+  .label::after{content:"";flex:1;height:1px;background:var(--line)}
+  h2{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(24px,3.4vw,38px);letter-spacing:-.01em;
+    line-height:1.15;margin-bottom:14px;
+  }
+  .lede{max-width:52ch;color:#3D4144;font-size:15px}
+
+  /* ---------- 印样(作品) ---------- */
+  .sheet{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:34px;
+  }
+  .frame{
+    position:relative;aspect-ratio:3/4;background:#D3D5CF;
+    background-size:cover;background-position:center;
+    border:1px solid var(--line);overflow:hidden;
+  }
+  .frame::before{ /* 未放图时的占位提示 */
+    content:attr(data-slot);position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey);
+  }
+  .frame .num{
+    position:absolute;bottom:6px;left:7px;z-index:2;
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+    color:var(--red);text-shadow:0 0 6px rgba(0,0,0,.55);
+  }
+  .frame:nth-child(3n+2){aspect-ratio:3/4}
+
+  /* ---------- 三档服务 ---------- */
+  .tiers{display:grid;grid-template-columns:1fr;gap:12px;margin-top:34px}
+  .tier{
+    background:var(--white);border:1px solid var(--line);
+    padding:28px 26px;
+    display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:34px;
+    transition:border-color .2s ease;
+  }
+  .tier:hover{border-color:var(--ink)}
+  .tier .tag{
+    font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+    color:var(--red);margin-bottom:12px;
+  }
+  .tier h3{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.01em}
+  .tier .pitch{font-size:14px;color:var(--ink);font-weight:500;margin-top:8px}
+  .tier .spec{margin-top:16px;font-size:13.5px;color:var(--grey);line-height:1.6}
+  .tier .spec b{
+    display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+    color:var(--ink);font-weight:500;margin-bottom:3px;
+  }
+  .tier .spec p+p{margin-top:10px}
+
+  /* 价格行:虚线引导线 */
+  .rows{border-top:1px solid var(--line)}
+  .row{
+    display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+    padding:13px 0;border-bottom:1px solid var(--line);
+  }
+  .row-l{min-width:0}
+  .row-name{display:block;font-weight:500;font-size:15px}
+  .row-note{display:block;font-size:12px;color:var(--grey);margin-top:3px;line-height:1.5}
+  .row-price{
+    font-family:var(--display);font-weight:800;font-size:19px;
+    letter-spacing:-.02em;white-space:nowrap;
+  }
+  .row-price small{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--grey);letter-spacing:.06em}
+  .row-price.ask{font-family:var(--mono);font-weight:500;font-size:12px;color:var(--red);letter-spacing:.1em}
+
+  /* ---------- 特色套餐 ---------- */
+  .sets{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:34px}
+  .set{background:var(--white);border:1px solid var(--line);padding:26px 24px}
+  .set-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+  .set-top h3{font-family:var(--display);font-weight:700;font-size:20px}
+  .set-top .row-price{font-size:28px;color:var(--red)}
+  .set .cond{font-size:12px;color:var(--grey);margin-top:6px}
+  .set ul{list-style:none;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px}
+  .set li{padding:5px 0 5px 15px;position:relative;color:#3D4144}
+  .set li::before{content:"";position:absolute;left:0;top:13px;width:5px;height:5px;background:var(--red)}
+  .fine{margin-top:16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--grey)}
+
+  /* ---------- 加项 ---------- */
+  .addons{background:var(--white);border:1px solid var(--line);padding:8px 24px 10px;margin-top:34px}
+  .addons .row:last-child{border-bottom:0}
+
+  /* ---------- 预订须知 ---------- */
+  .terms{margin-top:34px;border-top:2px solid var(--ink)}
+  .term{display:flex;gap:26px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .term dt{
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+    color:var(--red);min-width:112px;flex-shrink:0;padding-top:3px;
+  }
+  .term dd{font-size:14px;color:#3D4144}
+  .term dd b{font-weight:500;color:var(--ink);border-bottom:2px solid var(--red)}
+
+  /* ---------- 流程(真序列,故用编号) ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+  .step{border-top:2px solid var(--ink);padding-top:14px}
+  .step .n{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.14em}
+  .step h4{font-family:var(--display);font-weight:700;font-size:15px;margin:8px 0 6px}
+  .step p{font-size:13.5px;color:var(--grey)}
+
+  /* ---------- 联系 ---------- */
+  .contact{background:var(--ink);color:var(--white)}
+  .contact h2{color:var(--white)}
+  .contact .label{color:rgba(251,251,249,.5)}
+  .contact .label::after{background:rgba(251,251,249,.2)}
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .links a{
+    border:1px solid rgba(251,251,249,.28);padding:13px 22px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+    transition:background .18s ease,color .18s ease;
+  }
+  .links a:hover{background:var(--white);color:var(--ink)}
+  footer{
+    background:var(--ink);color:rgba(251,251,249,.4);
+    border-top:1px solid rgba(251,251,249,.14);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+    padding:18px 20px;text-align:center;
+  }
+
+  /* ---------- 入场 ---------- */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:820px){
+    .sheet{grid-template-columns:repeat(2,1fr)}
+    .tiers,.steps{grid-template-columns:1fr}
+    .tier{grid-template-columns:1fr;gap:22px}
+    .sets{grid-template-columns:1fr}
+    .row{flex-direction:column;align-items:flex-start;gap:6px}
+    .row-price{font-size:18px}
+    .term{flex-direction:column;gap:6px}
+    .topbar .meta span:first-child{display:none}
+    .bracket{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brandmark">KUI<b>.</b>STUDIO</span>
+  <div class="meta">
+    <span>LONDON · 51.5074° N</span>
+    <span>EST. 2026</span>
+  </div>
+  <div class="lang" role="group" aria-label="Language">
+    <button id="btn-zh" class="on" onclick="setLang('zh')">中</button>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="finder">
+    <span class="bracket tl"></span><span class="bracket tr"></span>
+    <span class="bracket bl"></span><span class="bracket br"></span>
+    <p class="eyebrow" data-zh="伦敦 · 城市跟拍 / 人像摄影" data-en="LONDON · CITY SHOOTS / PORTRAITURE">伦敦 · 城市跟拍 / 人像摄影</p>
+    <h1 data-zh="把你在伦敦的<em>那一天</em>,拍成值得再看一遍的样子。" data-en="Your day in London, <em>shot like it matters.</em>">把你在伦敦的<em>那一天</em>,拍成值得再看一遍的样子。</h1>
+    <p class="sub" data-zh="不摆拍模板,不赶时间。我们陪你走一段路,顺手把光、街道和你当时的表情一起收进来。" data-en="No stiff poses, no rushing. We walk the city with you and catch the light, the street, and the way you actually looked that day.">不摆拍模板,不赶时间。我们陪你走一段路,顺手把光、街道和你当时的表情一起收进来。</p>
+    <div class="exif">
+      <span>f/1.8</span><span>1/250s</span><span>ISO 400</span>
+      <span data-zh="35MM · 数码 + 胶片" data-en="35MM · DIGITAL + FILM">35MM · 数码 + 胶片</span>
+      <span data-zh="底片全送" data-en="ALL RAWS INCLUDED">底片全送</span>
+    </div>
+    <a class="cta" href="#contact" data-zh="预约档期 →" data-en="BOOK A DATE →">预约档期 →</a>
+  </div>
+</header>
+
+<!-- 作品:印样 -->
+<section class="band reveal">
+  <div class="wrap">
+    <p class="label" data-zh="印样 / CONTACT SHEET" data-en="CONTACT SHEET">印样 / CONTACT SHEET</p>
+    <h2 data-zh="最近拍的" data-en="Recent work">最近拍的</h2>
+    <p class="lede" data-zh="街头、咖啡馆、泰晤士河边、Notting Hill 的门口——照片先说话。" data-en="Streets, cafés, the river, a door in Notting Hill. The pictures do the talking.">街头、咖啡馆、泰晤士河边、Notting Hill 的门口——照片先说话。</p>
+    <div class="sheet">
+      <div class="frame" data-slot="images/01.jpg" style="background-image:url('images/01.jpg')"><span class="num">01A</span></div>
+      <div class="frame" data-slot="images/02.jpg" style="background-image:url('images/02.jpg')"><span class="num">02A</span></div>
+      <div class="frame" data-slot="images/03.jpg" style="background-image:url('images/03.jpg')"><span class="num">03A</span></div>
+      <div class="frame" data-slot="images/04.jpg" style="background-image:url('images/04.jpg')"><span class="num">04A</span></div>
+      <div class="frame" data-slot="images/05.jpg" style="background-image:url('images/05.jpg')"><span class="num">05A</span></div>
+      <div class="frame" data-slot="images/06.jpg" style="background-image:url('images/06.jpg')"><span class="num">06A</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 三档服务 -->
+<section class="band reveal" id="services">
+  <div class="wrap">
+    <p class="label" data-zh="服务与价格 / SERVICES" data-en="SERVICES &amp; RATES">服务与价格 / SERVICES</p>
+    <h2 data-zh="三个档位,按摄影师选" data-en="Three tiers, pick your photographer">三个档位,按摄影师选</h2>
+    <p class="lede" data-zh="底片全送。我们是多位摄影师组成的团队,会按你的风格偏好与需求,安排真正适合你的那一位。" data-en="All raws included. We're a team of photographers — we match you with the one who fits your style.">底片全送。我们是多位摄影师组成的团队,会按你的风格偏好与需求,安排真正适合你的那一位。</p>
+
+    <div class="tiers">
+
+      <!-- PRICE 1:基础陪拍 -->
+      <div class="tier">
+        <div>
+          <p class="tag">TIER 01 · STANDARD</p>
+          <h3 data-zh="基础陪拍" data-en="Standard Companion">基础陪拍</h3>
+          <p class="pitch" data-zh="边玩边拍 · 轻松记录生活" data-en="Walk and shoot · everyday moments">边玩边拍 · 轻松记录生活</p>
+          <div class="spec">
+            <p><b data-zh="适合" data-en="BEST FOR">适合</b><span data-zh="想轻松记录伦敦日常、旅行探店、毕业打卡;或朋友、对象拍照不出片,需要有审美的人陪你边逛边拍。" data-en="Everyday London, café hopping, graduation snaps — or when your friend just can't get a good shot of you.">想轻松记录伦敦日常、旅行探店、毕业打卡;或朋友、对象拍照不出片,需要有审美的人陪你边逛边拍。</span></p>
+            <p><b data-zh="特点" data-en="HOW IT WORKS">特点</b><span data-zh="按小时计费,熟悉城市里好拍好玩的机位;自然抓拍、生活纪实风格,底片全送。" data-en="Hourly. We know the spots. Candid, documentary style. All raws included.">按小时计费,熟悉城市里好拍好玩的机位;自然抓拍、生活纪实风格,底片全送。</span></p>
+          </div>
+        </div>
+        <div class="rows">
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="手机拍摄 Phone" data-en="Phone">手机拍摄 Phone</span>
+              <span class="row-note" data-zh="1.5 小时起 · 底片全送 · 支持多设备 / 自带设备" data-en="From 1.5 hrs · All raws · Multiple / your own devices">1.5 小时起 · 底片全送 · 支持多设备 / 自带设备</span>
+            </div>
+            <span class="row-price">£40 <small data-zh="/ 小时" data-en="/ hr">/ 小时</small></span>
+          </div>
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="相机拍摄 Camera" data-en="Camera">相机拍摄 Camera</span>
+              <span class="row-note" data-zh="1.5 小时起 · 底片全送 · 支持自带设备" data-en="From 1.5 hrs · All raws · Your own gear welcome">1.5 小时起 · 底片全送 · 支持自带设备</span>
+            </div>
+            <span class="row-price">£50 <small data-zh="/ 小时" data-en="/ hr">/ 小时</small></span>
+          </div>
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="包天 Full Day(5.5h)" data-en="Full Day (5.5h)">包天 Full Day(5.5h)</span>
+              <span class="row-note" data-zh="原片全送 + 基础调色(精修可加购)" data-en="All raws + basic colour grade (retouching extra)">原片全送 + 基础调色(精修可加购)</span>
+            </div>
+            <span class="row-price">£210</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRICE 2:专业摄影师 -->
+      <div class="tier">
+        <div>
+          <p class="tag">TIER 02 · PROFESSIONAL</p>
+          <h3 data-zh="专业摄影师" data-en="Professional">专业摄影师</h3>
+          <p class="pitch" data-zh="质感光影 · 轻松发社交媒体" data-en="Light and texture · ready to post">质感光影 · 轻松发社交媒体</p>
+          <div class="spec">
+            <p><b data-zh="适合" data-en="BEST FOR">适合</b><span data-zh="对画面质感与构图叙事有要求、有氛围的人像 / 情侣 / 毕业 / 婚纱,对原片有品质要求。" data-en="Portraits, couples, graduation and wedding shoots where the mood and the frame have to be right.">对画面质感与构图叙事有要求、有氛围的人像 / 情侣 / 毕业 / 婚纱,对原片有品质要求。</span></p>
+            <p><b data-zh="特点" data-en="HOW IT WORKS">特点</b><span data-zh="扎实技术 + 稳定审美的专业摄影师亲自把控;全程动作与表情指导;提供穿搭与地点建议,强调光影质感与构图叙事。" data-en="A professional runs the shoot end to end. Posing and expression coached throughout, plus styling and location advice.">扎实技术 + 稳定审美的专业摄影师亲自把控;全程动作与表情指导;提供穿搭与地点建议,强调光影质感与构图叙事。</span></p>
+          </div>
+        </div>
+        <div class="rows">
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="手机拍摄 Phone" data-en="Phone">手机拍摄 Phone</span>
+              <span class="row-note" data-zh="1 小时起 · 拍摄指导 · 原片全送 + 6 张基础调色" data-en="From 1 hr · Coached · All raws + 6 graded">1 小时起 · 拍摄指导 · 原片全送 + 6 张基础调色</span>
+            </div>
+            <span class="row-price">£90 <small data-zh="/ 小时" data-en="/ hr">/ 小时</small></span>
+          </div>
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="相机拍摄 Camera" data-en="Camera">相机拍摄 Camera</span>
+              <span class="row-note" data-zh="1 小时起 · 穿搭与地点建议 + 拍摄指导 · 原片全送 + 6 张基础调色" data-en="From 1 hr · Styling &amp; location advice · All raws + 6 graded">1 小时起 · 穿搭与地点建议 + 拍摄指导 · 原片全送 + 6 张基础调色</span>
+            </div>
+            <span class="row-price">£100 <small data-zh="/ 小时" data-en="/ hr">/ 小时</small></span>
+          </div>
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="包天 Full Day(5.5h)" data-en="Full Day (5.5h)">包天 Full Day(5.5h)</span>
+              <span class="row-note" data-zh="穿搭建议 + 拍摄指导 · 原片全送 + 6 张精修 + 6 张基础调色" data-en="Styling + coaching · All raws + 6 retouched + 6 graded">穿搭建议 + 拍摄指导 · 原片全送 + 6 张精修 + 6 张基础调色</span>
+            </div>
+            <span class="row-price">£400</span>
+          </div>
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="复古质感柯达胶片 Kodak Film" data-en="Kodak Film">复古质感柯达胶片 Kodak Film</span>
+              <span class="row-note" data-zh="真实柯达胶片 · 复古颗粒质感" data-en="Real Kodak stock · vintage grain">真实柯达胶片 · 复古颗粒质感</span>
+            </div>
+            <span class="row-price">£160</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRICE 3:首席摄影师 -->
+      <div class="tier">
+        <div>
+          <p class="tag">TIER 03 · CHIEF</p>
+          <h3 data-zh="首席摄影师" data-en="Chief Photographer">首席摄影师</h3>
+          <p class="pitch" data-zh="塑造气质 · 原图直出的自然美" data-en="Presence, not just a likeness">塑造气质 · 原图直出的自然美</p>
+          <div class="spec">
+            <p><b data-zh="适合" data-en="BEST FOR">适合</b><span data-zh="想要高阶审美、玩转网感;博主内容、重要时刻、品牌写真,喜欢小葵的拍摄风格与灵感创作。" data-en="Creator content, brand portraits and moments that matter — for people who want a strong point of view.">想要高阶审美、玩转网感;博主内容、重要时刻、品牌写真,喜欢小葵的拍摄风格与灵感创作。</span></p>
+            <p><b data-zh="特点" data-en="HOW IT WORKS">特点</b><span data-zh="艺术家背景摄影师——不只记录长相,更懂塑造气质、提升素人颜值,主打原图直出的自然美;1 对 1 分享伦敦机位与旅拍经验。" data-en="An artist-trained photographer who shapes how you come across, not just how you look. Straight-out-of-camera naturalism, plus one-to-one location knowledge.">艺术家背景摄影师——不只记录长相,更懂塑造气质、提升素人颜值,主打原图直出的自然美;1 对 1 分享伦敦机位与旅拍经验。</span></p>
+          </div>
+        </div>
+        <div class="rows">
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="手机摄影 Phone" data-en="Phone">手机摄影 Phone</span>
+              <span class="row-note" data-zh="单人 · 2 小时 £235(£120 + £115 优惠)" data-en="Solo · 2 hrs £235 (£120 + £115)">单人 · 2 小时 £235(£120 + £115 优惠)</span>
+            </div>
+            <span class="row-price">£120 <small data-zh="/ 小时" data-en="/ hr">/ 小时</small></span>
+          </div>
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="专业相机 Camera" data-en="Camera">专业相机 Camera</span>
+              <span class="row-note" data-zh="单人 · 2 小时 £295(£150 + £145 优惠)" data-en="Solo · 2 hrs £295 (£150 + £145)">单人 · 2 小时 £295(£150 + £145 优惠)</span>
+            </div>
+            <span class="row-price">£150 <small data-zh="/ 小时" data-en="/ hr">/ 小时</small></span>
+          </div>
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="胶片氛围方案 Film" data-en="Film">胶片氛围方案 Film</span>
+              <span class="row-note" data-zh="一卷 36 张 · 约 1 小时 · 赠数码试拍底片" data-en="One 36-exp roll · approx 1 hr · digital test frames included">一卷 36 张 · 约 1 小时 · 赠数码试拍底片</span>
+            </div>
+            <span class="row-price">£200 <small data-zh="/ 卷" data-en="/ roll">/ 卷</small></span>
+          </div>
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="抖音 / Reels 短视频 Video" data-en="Douyin / Reels Video">抖音 / Reels 短视频 Video</span>
+              <span class="row-note" data-zh="含拍摄 + 后期剪辑" data-en="Filming + edit included">含拍摄 + 后期剪辑</span>
+            </div>
+            <span class="row-price">£150 <small data-zh="/ 条" data-en="/ clip">/ 条</small></span>
+          </div>
+          <div class="row">
+            <div class="row-l">
+              <span class="row-name" data-zh="尊享包天 Full Day(5h)" data-en="Full Day (5h)">尊享包天 Full Day(5h)</span>
+              <span class="row-note" data-zh="含 0.5h 休息及中转 · 大团体(&gt;2 人)£750" data-en="Incl. 0.5h break and transfers · Groups over 2 £750">含 0.5h 休息及中转 · 大团体(&gt;2 人)£750</span>
+            </div>
+            <span class="row-price" data-zh="相机 £600 / 手机 £500" data-en="Camera £600 / Phone £500">相机 £600 / 手机 £500</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 特色套餐 -->
+<section class="band reveal" id="sets">
+  <div class="wrap">
+    <p class="label" data-zh="特色套餐 / SIGNATURE SETS" data-en="SIGNATURE SETS">特色套餐 / SIGNATURE SETS</p>
+    <h2 data-zh="打包好的两个场合" data-en="Two occasions, fully packaged">打包好的两个场合</h2>
+    <p class="lede" data-zh="含妆发、含指导、含成片。不用自己拼时长和加项。" data-en="Hair and makeup, direction and finished images — all in. Nothing to piece together.">含妆发、含指导、含成片。不用自己拼时长和加项。</p>
+
+    <div class="sets">
+      <div class="set">
+        <div class="set-top">
+          <h3 data-zh="毕业写真" data-en="Graduation">毕业写真</h3>
+          <span class="row-price">£499</span>
+        </div>
+        <p class="cond" data-zh="2 小时 · 可选两个地点 · 含妆发(1 人)" data-en="2 hrs · Two locations · Hair &amp; makeup for 1">2 小时 · 可选两个地点 · 含妆发(1 人)</p>
+        <ul>
+          <li data-zh="相机拍摄 + 手机花絮 + 拍摄指导" data-en="Camera shoot + phone behind-the-scenes + coaching">相机拍摄 + 手机花絮 + 拍摄指导</li>
+          <li data-zh="赠 36 张胶片 + 6 张精修 + 6 张风格化调色" data-en="36 film frames + 6 retouched + 6 stylised grades">赠 36 张胶片 + 6 张精修 + 6 张风格化调色</li>
+        </ul>
+      </div>
+
+      <div class="set">
+        <div class="set-top">
+          <h3 data-zh="婚纱写真" data-en="Wedding / Bridal">婚纱写真</h3>
+          <span class="row-price">£599</span>
+        </div>
+        <p class="cond" data-zh="双人 · 2 小时 · 含妆发(1 人,第二人妆发 +£80)" data-en="Two people · 2 hrs · Hair &amp; makeup for 1 (second person +£80)">双人 · 2 小时 · 含妆发(1 人,第二人妆发 +£80)</p>
+        <ul>
+          <li data-zh="相机拍摄 + 手机花絮 + 拍摄指导" data-en="Camera shoot + phone behind-the-scenes + coaching">相机拍摄 + 手机花絮 + 拍摄指导</li>
+          <li data-zh="赠 36 张胶片 + 6 张精修 + 6 张风格化调色" data-en="36 film frames + 6 retouched + 6 stylised grades">赠 36 张胶片 + 6 张精修 + 6 张风格化调色</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="fine" data-zh="套餐含 1 人全套妆发,由合作彩妆师提供 · 额外人数与妆面可加购 · 精修可加购" data-en="INCLUDES FULL HAIR &amp; MAKEUP FOR ONE, BY OUR PARTNER ARTIST · EXTRA PEOPLE AND LOOKS AVAILABLE · RETOUCHING AVAILABLE">套餐含 1 人全套妆发,由合作彩妆师提供 · 额外人数与妆面可加购 · 精修可加购</p>
+  </div>
+</section>
+
+<!-- 升级与加项 -->
+<section class="band reveal" id="addons">
+  <div class="wrap">
+    <p class="label" data-zh="升级与加项 / ADD-ONS" data-en="UPGRADES &amp; ADD-ONS">升级与加项 / ADD-ONS</p>
+    <h2 data-zh="想再加点什么" data-en="Add what you need">想再加点什么</h2>
+
+    <div class="addons">
+      <div class="row">
+        <div class="row-l">
+          <span class="row-name" data-zh="妆造 Hair &amp; Makeup" data-en="Hair &amp; Makeup">妆造 Hair &amp; Makeup</span>
+          <span class="row-note" data-zh="工作室合作时装周专业化妆师,经验丰富,可指定风格" data-en="Our partner artists work fashion week. Tell us the look.">工作室合作时装周专业化妆师,经验丰富,可指定风格</span>
+        </div>
+        <span class="row-price ask" data-zh="详情咨询" data-en="ON REQUEST">详情咨询</span>
+      </div>
+      <div class="row">
+        <div class="row-l">
+          <span class="row-name" data-zh="多人入镜 Extra Person" data-en="Extra Person">多人入镜 Extra Person</span>
+        </div>
+        <span class="row-price" data-zh="+£20 <small>/ 人·小时</small>" data-en="+£20 <small>/ person·hr</small>">+£20 <small>/ 人·小时</small></span>
+      </div>
+      <div class="row">
+        <div class="row-l">
+          <span class="row-name" data-zh="精修 Retouch(P 图)" data-en="Retouching">精修 Retouch(P 图)</span>
+        </div>
+        <span class="row-price" data-zh="£8 <small>/ 张</small>" data-en="£8 <small>/ image</small>">£8 <small>/ 张</small></span>
+      </div>
+      <div class="row">
+        <div class="row-l">
+          <span class="row-name" data-zh="短视频 + 精修 Video Clip" data-en="Video Clip + Edit">短视频 + 精修 Video Clip</span>
+          <span class="row-note" data-zh="含剪辑与精修美颜" data-en="Editing and retouching included">含剪辑与精修美颜</span>
+        </div>
+        <span class="row-price" data-zh="+£30 <small>/ 条</small>" data-en="+£30 <small>/ clip</small>">+£30 <small>/ 条</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 预订须知 -->
+<section class="band reveal" id="terms">
+  <div class="wrap">
+    <p class="label" data-zh="预订须知 / TERMS" data-en="TERMS &amp; CONDITIONS">预订须知 / TERMS</p>
+    <h2 data-zh="先说清楚,拍得更放心" data-en="Clear terms, no surprises">先说清楚,拍得更放心</h2>
+
+    <dl class="terms">
+      <div class="term">
+        <dt data-zh="计费准则" data-en="DEPOSIT">计费准则</dt>
+        <dd data-zh="基础陪拍 / 专业摄影师 / 特色套餐:订金为总价的 <b>30%</b>。首席摄影师:订金为 <b>£70 / 小时</b>(包天订金 <b>£250</b>)。订金需提前支付以锁定档期,余款拍摄前结清。" data-en="Standard, Professional and Signature Sets: deposit is <b>30%</b> of the total. Chief Photographer: deposit is <b>£70 per hour</b> (<b>£250</b> for a full day). The deposit holds your date; the balance is settled before the shoot.">基础陪拍 / 专业摄影师 / 特色套餐:订金为总价的 <b>30%</b>。首席摄影师:订金为 <b>£70 / 小时</b>(包天订金 <b>£250</b>)。订金需提前支付以锁定档期,余款拍摄前结清。</dd>
+      </div>
+      <div class="term">
+        <dt data-zh="关于时长" data-en="TIMING">关于时长</dt>
+        <dd data-zh="迟到不延时;拍摄不足 1 小时按 1 小时计算。" data-en="Late arrivals don't extend the session. Any shoot under an hour is charged as one hour.">迟到不延时;拍摄不足 1 小时按 1 小时计算。</dd>
+      </div>
+      <div class="term">
+        <dt data-zh="关于退改" data-en="CHANGES">关于退改</dt>
+        <dd data-zh="订金不退;改期或转赠他人仅限 1 次,须至少提前 48 小时告知;如中途终止,按已拍摄时长计费(且不低于订金)。" data-en="Deposits are non-refundable. You may reschedule or transfer your booking once, with at least 48 hours' notice. If a shoot ends early, we charge for the time used, and never less than the deposit.">订金不退;改期或转赠他人仅限 1 次,须至少提前 48 小时告知;如中途终止,按已拍摄时长计费(且不低于订金)。</dd>
+      </div>
+      <div class="term">
+        <dt data-zh="专属优惠" data-en="RETURNING">专属优惠</dt>
+        <dd data-zh="回头客 / 朋友推荐,享 9.5 折。" data-en="Returning clients and referrals get 5% off.">回头客 / 朋友推荐,享 9.5 折。</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- 流程 -->
+<section class="band reveal">
+  <div class="wrap">
+    <p class="label" data-zh="怎么拍 / HOW IT WORKS" data-en="HOW IT WORKS">怎么拍 / HOW IT WORKS</p>
+    <div class="steps">
+      <div class="step">
+        <p class="n">01</p>
+        <h4 data-zh="发消息" data-en="Message us">发消息</h4>
+        <p data-zh="告诉我们日期、想去的地方、大概想要的感觉。" data-en="Tell us the date, the spot, the mood you want.">告诉我们日期、想去的地方、大概想要的感觉。</p>
+      </div>
+      <div class="step">
+        <p class="n">02</p>
+        <h4 data-zh="定方案" data-en="Lock the plan">定方案</h4>
+        <p data-zh="确认摄影师、路线和时间,付定金锁档期。" data-en="Confirm photographer, route and time. Deposit holds the date.">确认摄影师、路线和时间,付定金锁档期。</p>
+      </div>
+      <div class="step">
+        <p class="n">03</p>
+        <h4 data-zh="当天拍" data-en="Shoot day">当天拍</h4>
+        <p data-zh="见面就开拍,不用你会摆姿势,我们会带。" data-en="We meet and start. You don't need to know how to pose.">见面就开拍,不用你会摆姿势,我们会带。</p>
+      </div>
+      <div class="step">
+        <p class="n">04</p>
+        <h4 data-zh="交片" data-en="Delivery">交片</h4>
+        <p data-zh="48 小时给原片,精修按档位在 3–7 天内发你。" data-en="Raws in 48 hrs. Retouched files within 3–7 days.">48 小时给原片,精修按档位在 3–7 天内发你。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="band contact" id="contact">
+  <div class="wrap">
+    <p class="label" data-zh="预约 / BOOKING" data-en="BOOKING">预约 / BOOKING</p>
+    <h2 data-zh="档期一般提前两周排满。" data-en="The calendar usually fills two weeks out.">档期一般提前两周排满。</h2>
+    <p class="lede" style="color:rgba(251,251,249,.7)" data-zh="想拍就直接说日期,我们回得很快。" data-en="Send us a date. We reply fast.">想拍就直接说日期,我们回得很快。</p>
+    <div class="links">
+      <!-- CONTACT:换成你自己的邮箱 / 账号 -->
+      <a href="mailto:hello@kui.studio">EMAIL — HELLO@KUI.STUDIO</a>
+      <a href="https://instagram.com/" target="_blank" rel="noopener">INSTAGRAM</a>
+      <a href="https://www.xiaohongshu.com/" target="_blank" rel="noopener">小红书 XIAOHONGSHU</a>
+      <a href="#" data-zh="微信 KUISTUDIO" data-en="WECHAT KUISTUDIO">微信 KUISTUDIO</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 KUI.STUDIO · LONDON, UK · <span data-zh="版权归客户与摄影师共同所有" data-en="ALL RIGHTS RESERVED">版权归客户与摄影师共同所有</span>
+</footer>
+
+<script>
+  // 语言切换
+  function setLang(l){
+    document.documentElement.lang = l==='zh' ? 'zh-CN' : 'en';
+    document.querySelectorAll('[data-zh]').forEach(function(el){
+      el.innerHTML = el.getAttribute(l==='zh' ? 'data-zh' : 'data-en');
+    });
+    document.getElementById('btn-zh').classList.toggle('on', l==='zh');
+    document.getElementById('btn-en').classList.toggle('on', l==='en');
+  }
+
+  // 滚动入场
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>
