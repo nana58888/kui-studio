@@ -297,14 +297,34 @@
     font-family:var(--mono);font-size:11.5px;line-height:1.65;color:var(--ink);
     white-space:pre-wrap;word-break:break-word;max-height:280px;overflow:auto;
   }
-  .bk-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-  .bk-acts button,.bk-acts a{
-    text-align:center;border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer;
-    font-family:var(--mono);font-size:11px;letter-spacing:.09em;padding:11px 8px;
+  .bk-step{
+    display:flex;align-items:center;gap:9px;margin:16px 0 8px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey);
+  }
+  .bk-step b{
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    width:17px;height:17px;background:var(--red);color:var(--white);
+    font-family:var(--mono);font-size:10px;font-weight:500;
+  }
+  .bk-copybig{
+    display:block;width:100%;margin-top:9px;border:0;cursor:pointer;
+    background:var(--ink);color:var(--white);
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;padding:13px;
+    transition:background .18s ease;
+  }
+  .bk-copybig:hover,.bk-copybig.ok{background:var(--red)}
+  .bk-send{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .bk-ch{border:1px solid var(--line);padding:12px 13px;min-width:0}
+  .bk-ch-t{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--red);margin-bottom:4px}
+  .bk-ch-d{font-size:12px;color:var(--grey);line-height:1.45;margin-bottom:9px;word-break:break-all}
+  .bk-ch-a{display:flex;flex-wrap:wrap;gap:6px}
+  .bk-ch-a a,.bk-ch-a button{
+    border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;padding:8px 11px;
     transition:background .18s ease,color .18s ease;
   }
-  .bk-acts button:hover,.bk-acts a:hover{background:var(--ink);color:var(--white)}
-  .bk-acts .done{background:var(--red);border-color:var(--red);color:var(--white)}
+  .bk-ch-a a:hover,.bk-ch-a button:hover{background:var(--ink);color:var(--white)}
+  .bk-ch-a .ok{background:var(--red);border-color:var(--red);color:var(--white)}
 
   /* 订金规则条 */
   .bk-rules{
@@ -317,7 +337,7 @@
 
   @media(max-width:820px){
     .booking{grid-template-columns:1fr}
-    .bk-grid,.bk-addons,.bk-acts,.bk-rules{grid-template-columns:1fr}
+    .bk-grid,.bk-addons,.bk-send,.bk-rules{grid-template-columns:1fr}
     .bk-sum{position:static}
   }
 
@@ -786,12 +806,48 @@
         <button type="button" class="bk-submit" id="bkGo" data-zh="生成预约信息 →" data-en="GENERATE REQUEST →">生成预约信息 →</button>
 
         <div class="bk-out" id="bkOut" hidden>
-          <p class="bk-note" style="margin-top:0" data-zh="复制下面这段,发给我们任一联系方式即可。我们确认档期后再收订金。" data-en="Copy the text below and send it to us on any channel. We'll confirm the slot, then take the deposit.">复制下面这段,发给我们任一联系方式即可。</p>
+          <p class="bk-step"><b>1</b><span data-zh="复制预约信息" data-en="COPY YOUR REQUEST">复制预约信息</span></p>
           <pre id="bkText"></pre>
-          <div class="bk-acts">
-            <button type="button" id="bkCopy" data-zh="复制这段" data-en="COPY TEXT">复制这段</button>
-            <a id="bkMail" href="#" data-zh="用邮件发送" data-en="SEND BY EMAIL">用邮件发送</a>
+          <button type="button" class="bk-copybig" id="bkCopy" data-zh="复制预约信息" data-en="COPY REQUEST">复制预约信息</button>
+
+          <p class="bk-step"><b>2</b><span data-zh="选一个渠道发给我们" data-en="SEND IT TO US">选一个渠道发给我们</span></p>
+          <div class="bk-send">
+
+            <div class="bk-ch">
+              <p class="bk-ch-t" data-zh="邮件 EMAIL" data-en="EMAIL">邮件 EMAIL</p>
+              <p class="bk-ch-d" data-zh="内容已自动填好,点开直接发送,不用复制。" data-en="Pre-filled for you — just hit send. No copying needed.">内容已自动填好,点开直接发送,不用复制。</p>
+              <div class="bk-ch-a">
+                <a id="bkMail" href="#" data-zh="邮件 App" data-en="MAIL APP">邮件 App</a>
+                <a id="bkGmail" href="#" target="_blank" rel="noopener" data-zh="Gmail 网页版" data-en="GMAIL WEB">Gmail 网页版</a>
+              </div>
+            </div>
+
+            <div class="bk-ch">
+              <p class="bk-ch-t" data-zh="INSTAGRAM" data-en="INSTAGRAM">INSTAGRAM</p>
+              <p class="bk-ch-d">@kui.studio_</p>
+              <div class="bk-ch-a">
+                <a href="https://ig.me/m/kui.studio_" target="_blank" rel="noopener" data-zh="打开私信 → 粘贴" data-en="OPEN DM → PASTE">打开私信 → 粘贴</a>
+              </div>
+            </div>
+
+            <div class="bk-ch">
+              <p class="bk-ch-t" data-zh="微信 WECHAT" data-en="WECHAT">微信 WECHAT</p>
+              <p class="bk-ch-d" data-zh="微信搜索 xiaokuiiii1 加好友后粘贴发送。" data-en="Search xiaokuiiii1 in WeChat, add us, then paste.">微信搜索 xiaokuiiii1 加好友后粘贴发送。</p>
+              <div class="bk-ch-a">
+                <button type="button" class="copy" data-copy="xiaokuiiii1" data-zh="复制微信号" data-en="COPY WECHAT ID">复制微信号</button>
+              </div>
+            </div>
+
+            <div class="bk-ch">
+              <p class="bk-ch-t" data-zh="小红书 XIAOHONGSHU" data-en="XIAOHONGSHU">小红书 XIAOHONGSHU</p>
+              <p class="bk-ch-d" data-zh="小红书搜索 xiaokuiiii1 私信粘贴发送。" data-en="Search xiaokuiiii1 on Xiaohongshu and DM us.">小红书搜索 xiaokuiiii1 私信粘贴发送。</p>
+              <div class="bk-ch-a">
+                <button type="button" class="copy" data-copy="xiaokuiiii1" data-zh="复制小红书号" data-en="COPY XHS ID">复制小红书号</button>
+              </div>
+            </div>
+
           </div>
+          <p class="bk-note" data-zh="我们确认档期后再收订金,不用现在付款。" data-en="We'll confirm the date before taking any deposit — nothing to pay now.">我们确认档期后再收订金,不用现在付款。</p>
         </div>
       </aside>
     </div>
@@ -1097,21 +1153,34 @@
       $('bkOut').hidden = false;
       var subj = L()==='zh' ? 'KUI.STUDIO 预约申请 — ' + ($('bkName').value.trim()) + ' · ' + $('bkDate').value
                             : 'KUI.STUDIO booking — ' + ($('bkName').value.trim()) + ' · ' + $('bkDate').value;
-      $('bkMail').href = 'mailto:kui.studiophoto@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(txt);
+      var to = 'kui.studiophoto@gmail.com';
+      $('bkMail').href = 'mailto:' + to + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(txt);
+      $('bkGmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=' + encodeURIComponent(to) +
+                          '&su=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(txt);
       $('bkOut').scrollIntoView({block:'nearest', behavior:'smooth'});
     });
 
-    $('bkCopy').addEventListener('click', function(){
-      var btn = this, txt = $('bkText').textContent;
+    function copyText(txt, btn, label){
       var flash = function(){
-        var prev = btn.textContent;
-        btn.textContent = T('已复制 ✓','COPIED ✓');
-        btn.classList.add('done');
-        setTimeout(function(){ btn.textContent = prev; btn.classList.remove('done'); }, 1800);
+        if(!btn) return;
+        var prev = btn.innerHTML;
+        btn.innerHTML = label || T('已复制 ✓','COPIED ✓');
+        btn.classList.add('ok');
+        setTimeout(function(){ btn.innerHTML = prev; btn.classList.remove('ok'); }, 1800);
       };
       if(navigator.clipboard && navigator.clipboard.writeText){
         navigator.clipboard.writeText(txt).then(flash, function(){ legacyCopy(txt, flash); });
       } else { legacyCopy(txt, flash); }
+    }
+
+    $('bkCopy').addEventListener('click', function(){
+      copyText($('bkText').textContent, this);
+    });
+
+    // 打开 IG 私信前先把预约信息放进剪贴板,过去就能直接粘贴
+    var igLink = document.querySelector('.bk-ch-a a[href^="https://ig.me"]');
+    if(igLink) igLink.addEventListener('click', function(){
+      if(!$('bkOut').hidden) copyText($('bkText').textContent, null);
     });
 
     function legacyCopy(txt, cb){
