@@ -236,6 +236,91 @@
     padding:18px 20px;text-align:center;
   }
 
+  /* ---------- 预约表单 ---------- */
+  .booking{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;margin-top:32px;align-items:start}
+  .bk-form{background:rgba(251,251,249,.04);border:1px solid rgba(251,251,249,.16);padding:26px 24px}
+  .bk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .bk-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+  .bk-field.full{grid-column:1/-1}
+  .bk-field>label,.bk-legend{
+    font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+    color:rgba(251,251,249,.5);
+  }
+  .bk-field .req{color:var(--red)}
+  .bk-field input,.bk-field select,.bk-field textarea{
+    background:rgba(22,24,26,.5);border:1px solid rgba(251,251,249,.22);
+    color:var(--white);font-family:var(--body);font-weight:300;font-size:14px;
+    padding:11px 12px;width:100%;transition:border-color .18s ease;
+  }
+  .bk-field textarea{resize:vertical;min-height:76px;line-height:1.55}
+  .bk-field input:focus,.bk-field select:focus,.bk-field textarea:focus{outline:none;border-color:var(--red)}
+  .bk-field input::placeholder,.bk-field textarea::placeholder{color:rgba(251,251,249,.3)}
+  .bk-field select{
+    appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:32px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23E23D2B'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 12px center;
+  }
+  .bk-field select option{background:#16181A;color:#FBFBF9}
+  .bk-field input[type=date]::-webkit-calendar-picker-indicator{filter:invert(1);opacity:.5;cursor:pointer}
+  .bk-hint{font-size:11.5px;color:rgba(251,251,249,.42);line-height:1.5}
+  .bk-bad{border-color:var(--red)!important}
+  .bk-addons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .bk-checks{display:flex;flex-direction:column;gap:10px}
+  .bk-check{display:flex;align-items:flex-start;gap:9px;cursor:pointer;font-size:13px;color:rgba(251,251,249,.78);line-height:1.45}
+  .bk-check input{width:15px;height:15px;flex-shrink:0;margin-top:2px;padding:0;accent-color:var(--red)}
+
+  /* 估价面板 */
+  .bk-sum{background:var(--white);color:var(--ink);padding:24px 22px;position:sticky;top:56px}
+  .bk-sum h3{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--grey);font-weight:500;margin-bottom:14px}
+  .bk-line{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:7px 0;border-bottom:1px solid var(--line)}
+  .bk-line .k{color:var(--grey);min-width:0}
+  .bk-line .v{text-align:right;font-weight:500;white-space:nowrap}
+  .bk-empty{font-size:13px;color:var(--grey);line-height:1.6;padding:6px 0 2px}
+  .bk-total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:14px;padding-top:14px;border-top:2px solid var(--ink)}
+  .bk-total .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey)}
+  .bk-total .v{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-.02em}
+  .bk-dep{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:10px;padding:12px}
+  .bk-dep{background:var(--ink);color:var(--white)}
+  .bk-dep .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:rgba(251,251,249,.6)}
+  .bk-dep .v{font-family:var(--display);font-weight:800;font-size:19px;color:var(--red);white-space:nowrap}
+  .bk-note{margin-top:12px;font-size:11.5px;color:var(--grey);line-height:1.55}
+  .bk-submit{
+    display:block;width:100%;margin-top:16px;border:0;cursor:pointer;
+    background:var(--red);color:var(--white);
+    font-family:var(--mono);font-size:12px;letter-spacing:.14em;padding:15px 20px;
+    transition:transform .18s ease,background .18s ease;
+  }
+  .bk-submit:hover{background:var(--ink);transform:translateY(-2px)}
+  .bk-out{margin-top:16px;border-top:1px solid var(--line);padding-top:16px}
+  .bk-out pre{
+    background:#F2F2EF;border:1px solid var(--line);padding:14px;
+    font-family:var(--mono);font-size:11.5px;line-height:1.65;color:var(--ink);
+    white-space:pre-wrap;word-break:break-word;max-height:280px;overflow:auto;
+  }
+  .bk-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+  .bk-acts button,.bk-acts a{
+    text-align:center;border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer;
+    font-family:var(--mono);font-size:11px;letter-spacing:.09em;padding:11px 8px;
+    transition:background .18s ease,color .18s ease;
+  }
+  .bk-acts button:hover,.bk-acts a:hover{background:var(--ink);color:var(--white)}
+  .bk-acts .done{background:var(--red);border-color:var(--red);color:var(--white)}
+
+  /* 订金规则条 */
+  .bk-rules{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:16px;
+    background:rgba(251,251,249,.16);border:1px solid rgba(251,251,249,.16);
+  }
+  .bk-rules>div{background:var(--ink);padding:15px 15px}
+  .bk-rules dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--red);margin-bottom:6px}
+  .bk-rules dd{font-size:12px;color:rgba(251,251,249,.7);line-height:1.5}
+
+  @media(max-width:820px){
+    .booking{grid-template-columns:1fr}
+    .bk-grid,.bk-addons,.bk-acts,.bk-rules{grid-template-columns:1fr}
+    .bk-sum{position:static}
+  }
+
   /* ---------- 入场 ---------- */
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
@@ -583,7 +668,153 @@
   <div class="wrap">
     <p class="label" data-zh="预约 / BOOKING" data-en="BOOKING">预约 / BOOKING</p>
     <h2 data-zh="档期一般提前两周排满。" data-en="The calendar usually fills two weeks out.">档期一般提前两周排满。</h2>
-    <p class="lede" style="color:rgba(251,251,249,.7)" data-zh="想拍就直接说日期,我们回得很快。" data-en="Send us a date. We reply fast.">想拍就直接说日期,我们回得很快。</p>
+    <p class="lede" style="color:rgba(251,251,249,.7)" data-zh="填一下想拍的内容和日期,右边会实时算出预估价和订金。填完点「生成预约信息」,把生成的那段发给我们任一联系方式,我们确认档期、收订金,就算约上了。" data-en="Tell us what you want and when. The estimate and deposit update live. Generate the summary, send it to us on any channel below, and we'll confirm the slot and take the deposit.">填一下想拍的内容和日期,右边会实时算出预估价和订金。</p>
+
+    <div class="booking">
+      <form class="bk-form" id="bkForm" novalidate>
+        <div class="bk-grid">
+
+          <div class="bk-field">
+            <label for="bkName"><span data-zh="怎么称呼你" data-en="YOUR NAME">怎么称呼你</span> <span class="req">*</span></label>
+            <input type="text" id="bkName" name="name" autocomplete="name" data-zh-ph="小葵 / Kui" data-en-ph="Your name" placeholder="小葵 / Kui">
+          </div>
+
+          <div class="bk-field">
+            <label for="bkChannel"><span data-zh="用哪个联系你" data-en="HOW TO REACH YOU">用哪个联系你</span> <span class="req">*</span></label>
+            <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px">
+              <select id="bkChannel" name="channel">
+                <option value="wechat" data-zh="微信" data-en="WeChat">微信</option>
+                <option value="ig" data-zh="Instagram" data-en="Instagram">Instagram</option>
+                <option value="xhs" data-zh="小红书" data-en="Xiaohongshu">小红书</option>
+                <option value="email" data-zh="邮箱" data-en="Email">邮箱</option>
+              </select>
+              <input type="text" id="bkHandle" name="handle" data-zh-ph="你的号 / 邮箱地址" data-en-ph="Your handle or email" placeholder="你的号 / 邮箱地址">
+            </div>
+          </div>
+
+          <div class="bk-field">
+            <label for="bkTier"><span data-zh="想选哪个档位" data-en="WHICH TIER">想选哪个档位</span> <span class="req">*</span></label>
+            <select id="bkTier" name="tier">
+              <option value="" data-zh="— 请选择 —" data-en="— Select —">— 请选择 —</option>
+              <option value="standard" data-zh="基础陪拍 Standard" data-en="Standard Companion">基础陪拍 Standard</option>
+              <option value="pro" data-zh="专业摄影师 Professional" data-en="Professional">专业摄影师 Professional</option>
+              <option value="chief" data-zh="首席摄影师 Chief" data-en="Chief Photographer">首席摄影师 Chief</option>
+              <option value="set" data-zh="特色套餐 Signature Set" data-en="Signature Set">特色套餐 Signature Set</option>
+            </select>
+          </div>
+
+          <div class="bk-field">
+            <label for="bkItem"><span data-zh="具体拍什么" data-en="WHAT EXACTLY">具体拍什么</span> <span class="req">*</span></label>
+            <select id="bkItem" name="item"></select>
+          </div>
+
+          <div class="bk-field">
+            <label for="bkDate"><span data-zh="想约哪天" data-en="PREFERRED DATE">想约哪天</span> <span class="req">*</span></label>
+            <input type="date" id="bkDate" name="date">
+            <p class="bk-hint" data-zh="档期一般提前两周排满,越早越好定。" data-en="We usually fill up two weeks ahead.">档期一般提前两周排满,越早越好定。</p>
+          </div>
+
+          <div class="bk-field">
+            <label for="bkSlot"><span data-zh="大概什么时段" data-en="TIME OF DAY">大概什么时段</span></label>
+            <select id="bkSlot" name="slot">
+              <option value="flex" data-zh="都可以 / 听你建议" data-en="Flexible — you decide">都可以 / 听你建议</option>
+              <option value="am" data-zh="上午" data-en="Morning">上午</option>
+              <option value="pm" data-zh="下午" data-en="Afternoon">下午</option>
+              <option value="golden" data-zh="傍晚(黄金时刻)" data-en="Golden hour">傍晚(黄金时刻)</option>
+            </select>
+          </div>
+
+          <div class="bk-field" id="bkHoursWrap">
+            <label for="bkHours"><span data-zh="拍多久(小时)" data-en="HOW LONG (HOURS)">拍多久(小时)</span></label>
+            <input type="number" id="bkHours" name="hours" step="0.5" min="1" value="2">
+            <p class="bk-hint" id="bkHoursHint"></p>
+          </div>
+
+          <div class="bk-field">
+            <label for="bkPeople"><span data-zh="几个人入镜" data-en="HOW MANY PEOPLE">几个人入镜</span></label>
+            <input type="number" id="bkPeople" name="people" step="1" min="1" max="20" value="1">
+            <p class="bk-hint" data-zh="超出档位含的人数,按 +£20 / 人·小时 计。" data-en="Beyond what the tier includes: +£20 per person, per hour.">超出档位含的人数,按 +£20 / 人·小时 计。</p>
+          </div>
+
+          <div class="bk-field full">
+            <label for="bkPlace"><span data-zh="想去哪儿拍" data-en="WHERE">想去哪儿拍</span></label>
+            <input type="text" id="bkPlace" name="place" data-zh-ph="Notting Hill / 泰晤士河边 / 还没想好,想听建议" data-en-ph="Notting Hill / the river / not sure — suggest somewhere" placeholder="Notting Hill / 泰晤士河边 / 还没想好,想听建议">
+          </div>
+
+          <div class="bk-field full">
+            <p class="bk-legend" data-zh="加项 ADD-ONS" data-en="ADD-ONS">加项 ADD-ONS</p>
+            <div class="bk-addons">
+              <div class="bk-field">
+                <label for="bkRetouch" style="letter-spacing:.08em" data-zh="精修 £8 / 张" data-en="Retouching £8 each">精修 £8 / 张</label>
+                <input type="number" id="bkRetouch" name="retouch" step="1" min="0" max="99" value="0">
+              </div>
+              <div class="bk-field">
+                <label for="bkVideo" style="letter-spacing:.08em" data-zh="短视频 £30 / 条" data-en="Video clip £30 each">短视频 £30 / 条</label>
+                <input type="number" id="bkVideo" name="video" step="1" min="0" max="20" value="0">
+              </div>
+              <div class="bk-field">
+                <p class="bk-legend" style="letter-spacing:.08em" data-zh="其他" data-en="Other">其他</p>
+                <div class="bk-checks">
+                  <label class="bk-check"><input type="checkbox" id="bkHmua" name="hmua"><span data-zh="想加妆造(详情咨询)" data-en="Add hair &amp; makeup (on request)">想加妆造(详情咨询)</span></label>
+                  <label class="bk-check" id="bkHmua2Wrap" hidden><input type="checkbox" id="bkHmua2" name="hmua2"><span data-zh="第二人妆发 +£80" data-en="Hair &amp; makeup for 2nd person +£80">第二人妆发 +£80</span></label>
+                  <label class="bk-check"><input type="checkbox" id="bkReturning" name="returning"><span data-zh="回头客 / 朋友推荐(9.5 折)" data-en="Returning client or referral (5% off)">回头客 / 朋友推荐(9.5 折)</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bk-field full">
+            <label for="bkNotes"><span data-zh="还想说点什么" data-en="ANYTHING ELSE">还想说点什么</span></label>
+            <textarea id="bkNotes" name="notes" data-zh-ph="想要的风格、参考图、穿什么、有没有特别想拍的东西……" data-en-ph="The mood you want, references, what you'll wear, anything special…" placeholder="想要的风格、参考图、穿什么、有没有特别想拍的东西……"></textarea>
+          </div>
+
+        </div>
+      </form>
+
+      <aside class="bk-sum">
+        <h3 data-zh="预估 ESTIMATE" data-en="ESTIMATE">预估 ESTIMATE</h3>
+        <div id="bkLines" aria-live="polite"></div>
+        <div class="bk-total">
+          <span class="k" data-zh="预估总价" data-en="EST. TOTAL">预估总价</span>
+          <span class="v" id="bkTotal">£0</span>
+        </div>
+        <div class="bk-dep">
+          <span class="k" data-zh="需付订金" data-en="DEPOSIT">需付订金</span>
+          <span class="v" id="bkDeposit">£0</span>
+        </div>
+        <p class="bk-note" id="bkDepNote"></p>
+        <button type="button" class="bk-submit" id="bkGo" data-zh="生成预约信息 →" data-en="GENERATE REQUEST →">生成预约信息 →</button>
+
+        <div class="bk-out" id="bkOut" hidden>
+          <p class="bk-note" style="margin-top:0" data-zh="复制下面这段,发给我们任一联系方式即可。我们确认档期后再收订金。" data-en="Copy the text below and send it to us on any channel. We'll confirm the slot, then take the deposit.">复制下面这段,发给我们任一联系方式即可。</p>
+          <pre id="bkText"></pre>
+          <div class="bk-acts">
+            <button type="button" id="bkCopy" data-zh="复制这段" data-en="COPY TEXT">复制这段</button>
+            <a id="bkMail" href="#" data-zh="用邮件发送" data-en="SEND BY EMAIL">用邮件发送</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <dl class="bk-rules">
+      <div>
+        <dt data-zh="订金" data-en="DEPOSIT">订金</dt>
+        <dd data-zh="基础 / 专业 / 套餐为总价 30%;首席为 £70 每小时,包天 £250。" data-en="Standard, Professional and Sets: 30% of total. Chief: £70 per hour, £250 for a full day.">基础 / 专业 / 套餐为总价 30%;首席为 £70 每小时,包天 £250。</dd>
+      </div>
+      <div>
+        <dt data-zh="不退" data-en="NON-REFUNDABLE">不退</dt>
+        <dd data-zh="订金支付后不退还,用于锁定你的档期。" data-en="Deposits are non-refundable. They hold your date.">订金支付后不退还,用于锁定你的档期。</dd>
+      </div>
+      <div>
+        <dt data-zh="改期一次" data-en="ONE RESCHEDULE">改期一次</dt>
+        <dd data-zh="可改期或转赠他人,仅限 1 次。" data-en="Reschedule or transfer to someone else — once.">可改期或转赠他人,仅限 1 次。</dd>
+      </div>
+      <div>
+        <dt data-zh="提前 48 小时" data-en="48 HOURS' NOTICE">提前 48 小时</dt>
+        <dd data-zh="改期须至少提前 48 小时告知。" data-en="Changes need at least 48 hours' notice.">改期须至少提前 48 小时告知。</dd>
+      </div>
+    </dl>
+
     <div class="links">
       <!-- CONTACT:邮箱 / IG / 小红书 / 微信 -->
       <a class="copy" href="mailto:kui.studiophoto@gmail.com" data-copy="kui.studiophoto@gmail.com">EMAIL — KUI.STUDIOPHOTO@GMAIL.COM</a>
@@ -607,8 +838,304 @@
     document.querySelectorAll('[data-zh]').forEach(function(el){
       el.innerHTML = el.getAttribute(l==='zh' ? 'data-zh' : 'data-en');
     });
+    document.querySelectorAll('[data-zh-ph]').forEach(function(el){
+      el.setAttribute('placeholder', el.getAttribute(l==='zh' ? 'data-zh-ph' : 'data-en-ph'));
+    });
     document.getElementById('btn-zh').classList.toggle('on', l==='zh');
     document.getElementById('btn-en').classList.toggle('on', l==='en');
+    if(window.bkRefresh) window.bkRefresh();
+  }
+
+  /* ============================================================
+     预约表单 —— 价目表 + 实时估价 + 生成预约信息
+     改价:下面 BK 对象是唯一价格来源,改这里即可,页面上方
+           的价目表文案需同步手改。
+     ============================================================ */
+  var BK = {
+    standard:{ zh:'基础陪拍', en:'Standard Companion', dep:{kind:'pct', pct:.30}, items:[
+      {id:'phone', zh:'手机拍摄 · £40/小时', en:'Phone · £40/hr', kind:'hr', rate:40, min:1.5},
+      {id:'camera',zh:'相机拍摄 · £50/小时', en:'Camera · £50/hr', kind:'hr', rate:50, min:1.5},
+      {id:'day',   zh:'包天 5.5 小时 · £210', en:'Full Day 5.5h · £210', kind:'flat', price:210, hours:5.5}
+    ]},
+    pro:{ zh:'专业摄影师', en:'Professional', dep:{kind:'pct', pct:.30}, items:[
+      {id:'phone', zh:'手机拍摄 · £90/小时', en:'Phone · £90/hr', kind:'hr', rate:90, min:1},
+      {id:'camera',zh:'相机拍摄 · £100/小时', en:'Camera · £100/hr', kind:'hr', rate:100, min:1},
+      {id:'day',   zh:'包天 5.5 小时 · £400', en:'Full Day 5.5h · £400', kind:'flat', price:400, hours:5.5},
+      {id:'film',  zh:'柯达胶片 · £160', en:'Kodak Film · £160', kind:'flat', price:160, hours:1}
+    ]},
+    chief:{ zh:'首席摄影师', en:'Chief Photographer', dep:{kind:'hr', rate:70, day:250}, items:[
+      {id:'phone', zh:'手机摄影 · £120/小时', en:'Phone · £120/hr', kind:'hr', rate:120, min:1, combo:{h:2, price:235}},
+      {id:'camera',zh:'专业相机 · £150/小时', en:'Camera · £150/hr', kind:'hr', rate:150, min:1, combo:{h:2, price:295}},
+      {id:'film',  zh:'胶片氛围方案 一卷 36 张 · £200', en:'Film · one 36-exp roll · £200', kind:'flat', price:200, hours:1},
+      {id:'video', zh:'抖音 / Reels 短视频 · £150', en:'Douyin / Reels video · £150', kind:'flat', price:150, hours:1},
+      {id:'dayc',  zh:'尊享包天 5h · 相机 · £600', en:'Full Day 5h · Camera · £600', kind:'flat', price:600, hours:5, grp:750, isDay:true},
+      {id:'dayp',  zh:'尊享包天 5h · 手机 · £500', en:'Full Day 5h · Phone · £500', kind:'flat', price:500, hours:5, grp:750, isDay:true}
+    ]},
+    set:{ zh:'特色套餐', en:'Signature Set', dep:{kind:'pct', pct:.30}, items:[
+      {id:'grad', zh:'毕业写真 2 小时 · £499', en:'Graduation · 2h · £499', kind:'flat', price:499, hours:2, base:1},
+      {id:'wed',  zh:'婚纱写真 双人 2 小时 · £599', en:'Wedding / Bridal · 2 people · 2h · £599', kind:'flat', price:599, hours:2, base:2, hmua2:true}
+    ]}
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var bkForm = $('bkForm');
+
+  if(bkForm){
+    var L = function(){ return document.documentElement.lang === 'en' ? 'en' : 'zh'; };
+    var T = function(zh, en){ return L()==='en' ? en : zh; };
+    var money = function(n){
+      var v = Math.round(n*100)/100;
+      return '£' + v.toLocaleString('en-GB', {
+        minimumFractionDigits: v % 1 === 0 ? 0 : 2,
+        maximumFractionDigits: 2
+      });
+    };
+
+    // 日期最早为今天
+    (function(){
+      var d = new Date(), p = function(x){ return (x<10?'0':'')+x; };
+      $('bkDate').min = d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+    })();
+
+    function currentTier(){ return BK[$('bkTier').value] || null; }
+    function currentItem(){
+      var t = currentTier(); if(!t) return null;
+      var v = $('bkItem').value;
+      for(var i=0;i<t.items.length;i++){ if(t.items[i].id === v) return t.items[i]; }
+      return null;
+    }
+
+    // 档位变化 → 重建「具体拍什么」
+    function fillItems(keep){
+      var t = currentTier(), sel = $('bkItem');
+      var prev = keep ? sel.value : '';
+      sel.innerHTML = '';
+      if(!t){
+        var o = document.createElement('option');
+        o.value = ''; o.textContent = T('— 先选档位 —','— Pick a tier first —');
+        sel.appendChild(o); sel.disabled = true; return;
+      }
+      sel.disabled = false;
+      t.items.forEach(function(it){
+        var o = document.createElement('option');
+        o.value = it.id; o.textContent = it[L()];
+        sel.appendChild(o);
+      });
+      if(prev) sel.value = prev;
+      if(!sel.value) sel.selectedIndex = 0;
+    }
+
+    // 按所选项目调整「时长」字段
+    function syncHours(){
+      var it = currentItem(), wrap = $('bkHoursWrap'), inp = $('bkHours'), hint = $('bkHoursHint');
+      if(!it){ wrap.hidden = false; hint.textContent = ''; return; }
+      if(it.kind === 'flat'){
+        wrap.hidden = true;
+        hint.textContent = '';
+      } else {
+        wrap.hidden = false;
+        inp.min = it.min;
+        if(parseFloat(inp.value) < it.min || !inp.value) inp.value = it.min;
+        hint.textContent = T('最低 '+it.min+' 小时起。','From '+it.min+' hrs.');
+      }
+      $('bkHmua2Wrap').hidden = !(it && it.hmua2);
+      if($('bkHmua2Wrap').hidden) $('bkHmua2').checked = false;
+    }
+
+    // 核心:算钱
+    function calc(){
+      var t = currentTier(), it = currentItem();
+      if(!t || !it) return null;
+
+      var people = Math.max(1, parseInt($('bkPeople').value,10) || 1);
+      var hours = it.kind === 'flat' ? it.hours : Math.max(it.min, parseFloat($('bkHours').value) || it.min);
+      var lines = [], base = 0, comboUsed = false, grpUsed = false;
+
+      if(it.kind === 'flat'){
+        if(it.grp && people > 2){ base = it.grp; grpUsed = true; }
+        else { base = it.price; }
+        lines.push({k: it[L()].split(' · ')[0] + (grpUsed ? T(' (大团体)',' (group)') : ''), v: base});
+      } else if(it.combo && Math.abs(hours - it.combo.h) < 1e-9 && people === 1){
+        base = it.combo.price; comboUsed = true;
+        lines.push({k: it[L()].split(' · ')[0] + T(' · 单人 2 小时优惠',' · solo 2-hr deal'), v: base});
+      } else {
+        base = it.rate * hours;
+        lines.push({k: it[L()].split(' · ')[0] + ' · ' + hours + T(' 小时',' hrs'), v: base});
+      }
+
+      var sub = base;
+
+      // 多人入镜(大团体包天价已含,不重复收)
+      var included = it.base || 1;
+      var extra = Math.max(0, people - included);
+      if(extra > 0 && !grpUsed){
+        var ex = 20 * extra * hours;
+        sub += ex;
+        lines.push({k: T('多人入镜 '+extra+' 人 × '+hours+' 小时','Extra people: '+extra+' × '+hours+' hrs'), v: ex});
+      }
+
+      var rt = Math.max(0, parseInt($('bkRetouch').value,10) || 0);
+      if(rt > 0){ sub += rt*8; lines.push({k: T('精修 '+rt+' 张','Retouching × '+rt), v: rt*8}); }
+
+      var vd = Math.max(0, parseInt($('bkVideo').value,10) || 0);
+      if(vd > 0){ sub += vd*30; lines.push({k: T('短视频 '+vd+' 条','Video clips × '+vd), v: vd*30}); }
+
+      if(it.hmua2 && $('bkHmua2').checked){
+        sub += 80; lines.push({k: T('第二人妆发','2nd person hair & makeup'), v: 80});
+      }
+
+      var discount = 0;
+      if($('bkReturning').checked){
+        discount = sub * 0.05;
+        lines.push({k: T('回头客 / 推荐 9.5 折','Returning / referral −5%'), v: -discount});
+      }
+      var total = sub - discount;
+
+      // 订金
+      var dep, depNote;
+      if(t.dep.kind === 'pct'){
+        dep = total * t.dep.pct;
+        depNote = T('订金为预估总价的 30%,支付后锁定档期,余款拍摄前结清。',
+                    'Deposit is 30% of the estimated total. It holds your date; the balance is settled before the shoot.');
+      } else {
+        if(it.isDay){ dep = t.dep.day; depNote = T('首席摄影师包天订金固定 £250。','Chief Photographer full-day deposit is a flat £250.'); }
+        else { dep = t.dep.rate * hours; depNote = T('首席摄影师订金为 £70 / 小时(本次 '+hours+' 小时)。','Chief Photographer deposit is £70 per hour (' + hours + ' hrs here).'); }
+      }
+
+      return {
+        tier:t, item:it, people:people, hours:hours, lines:lines,
+        total:total, dep:dep, depNote:depNote,
+        hmua: $('bkHmua').checked
+      };
+    }
+
+    function render(){
+      var box = $('bkLines'), r = calc();
+      box.innerHTML = '';
+      if(!r){
+        var p = document.createElement('p');
+        p.className = 'bk-empty';
+        p.textContent = T('选好档位和拍摄内容,这里会实时算出预估价和订金。',
+                          'Pick a tier and a service — the estimate and deposit appear here.');
+        box.appendChild(p);
+        $('bkTotal').textContent = '£0';
+        $('bkDeposit').textContent = '£0';
+        $('bkDepNote').textContent = '';
+        return;
+      }
+      r.lines.forEach(function(l){
+        var d = document.createElement('div'); d.className = 'bk-line';
+        var a = document.createElement('span'); a.className='k'; a.textContent = l.k;
+        var b = document.createElement('span'); b.className='v';
+        b.textContent = (l.v < 0 ? '−' : '') + money(Math.abs(l.v));
+        d.appendChild(a); d.appendChild(b); box.appendChild(d);
+      });
+      if(r.hmua){
+        var d2 = document.createElement('div'); d2.className='bk-line';
+        var a2 = document.createElement('span'); a2.className='k'; a2.textContent = T('妆造','Hair & makeup');
+        var b2 = document.createElement('span'); b2.className='v'; b2.style.color='#E23D2B';
+        b2.textContent = T('详情咨询','ON REQUEST');
+        d2.appendChild(a2); d2.appendChild(b2); box.appendChild(d2);
+      }
+      $('bkTotal').textContent = money(r.total);
+      $('bkDeposit').textContent = money(r.dep);
+      $('bkDepNote').textContent = r.depNote + T(' 以上为网站预估,最终报价以确认时为准。',
+                                                 ' This is a website estimate; the final quote is confirmed when we reply.');
+    }
+
+    // 生成给客人复制的文本
+    function buildText(){
+      var r = calc(), zh = L()==='zh';
+      var chSel = $('bkChannel'), chTxt = chSel.options[chSel.selectedIndex].textContent;
+      var slotSel = $('bkSlot'), slotTxt = slotSel.options[slotSel.selectedIndex].textContent;
+      var L2 = [];
+      L2.push(zh ? '【KUI.STUDIO 预约申请】' : '[KUI.STUDIO BOOKING REQUEST]');
+      L2.push('');
+      L2.push((zh?'称呼:':'Name: ') + ($('bkName').value.trim() || '—'));
+      L2.push((zh?'联系方式:':'Contact: ') + chTxt + ' ' + ($('bkHandle').value.trim() || '—'));
+      L2.push((zh?'档位:':'Tier: ') + r.tier[L()]);
+      L2.push((zh?'拍摄内容:':'Service: ') + r.item[L()]);
+      L2.push((zh?'日期:':'Date: ') + ($('bkDate').value || '—') + ' · ' + slotTxt);
+      L2.push((zh?'时长:':'Duration: ') + r.hours + (zh?' 小时':' hrs'));
+      L2.push((zh?'人数:':'People: ') + r.people + (zh?' 人':''));
+      var place = $('bkPlace').value.trim();
+      if(place) L2.push((zh?'地点:':'Location: ') + place);
+      L2.push('');
+      L2.push(zh ? '— 预估 —' : '— Estimate —');
+      r.lines.forEach(function(l){
+        L2.push('  ' + l.k + '  ' + (l.v<0?'−':'') + money(Math.abs(l.v)));
+      });
+      if(r.hmua) L2.push('  ' + (zh?'妆造  详情咨询':'Hair & makeup  on request'));
+      L2.push((zh?'预估总价:':'Est. total: ') + money(r.total));
+      L2.push((zh?'预估订金:':'Est. deposit: ') + money(r.dep));
+      var notes = $('bkNotes').value.trim();
+      if(notes){ L2.push(''); L2.push((zh?'备注:':'Notes: ') + notes); }
+      L2.push('');
+      L2.push(zh ? '(以上为网站自动预估,以确认为准)' : '(Auto-estimated on the website; subject to confirmation)');
+      return L2.join('\n');
+    }
+
+    function markBad(el, bad){ el.classList.toggle('bk-bad', !!bad); }
+
+    $('bkGo').addEventListener('click', function(){
+      var bad = null;
+      [['bkName', function(e){ return !e.value.trim(); }],
+       ['bkHandle', function(e){ return !e.value.trim(); }],
+       ['bkTier', function(e){ return !e.value; }],
+       ['bkDate', function(e){ return !e.value; }]].forEach(function(pair){
+        var el = $(pair[0]), isBad = pair[1](el);
+        markBad(el, isBad);
+        if(isBad && !bad) bad = el;
+      });
+      if(bad){
+        bad.focus();
+        bad.scrollIntoView({block:'center', behavior:'smooth'});
+        return;
+      }
+      var txt = buildText();
+      $('bkText').textContent = txt;
+      $('bkOut').hidden = false;
+      var subj = L()==='zh' ? 'KUI.STUDIO 预约申请 — ' + ($('bkName').value.trim()) + ' · ' + $('bkDate').value
+                            : 'KUI.STUDIO booking — ' + ($('bkName').value.trim()) + ' · ' + $('bkDate').value;
+      $('bkMail').href = 'mailto:kui.studiophoto@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(txt);
+      $('bkOut').scrollIntoView({block:'nearest', behavior:'smooth'});
+    });
+
+    $('bkCopy').addEventListener('click', function(){
+      var btn = this, txt = $('bkText').textContent;
+      var flash = function(){
+        var prev = btn.textContent;
+        btn.textContent = T('已复制 ✓','COPIED ✓');
+        btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = prev; btn.classList.remove('done'); }, 1800);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(flash, function(){ legacyCopy(txt, flash); });
+      } else { legacyCopy(txt, flash); }
+    });
+
+    function legacyCopy(txt, cb){
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.setAttribute('readonly','');
+      ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); cb(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+
+    // 任何输入变化都重算
+    bkForm.addEventListener('input', function(e){
+      if(e.target.id === 'bkTier'){ fillItems(false); syncHours(); }
+      if(e.target.id === 'bkItem'){ syncHours(); }
+      if(e.target.classList) markBad(e.target, false);
+      render();
+    });
+    bkForm.addEventListener('change', function(){ syncHours(); render(); });
+
+    // 供 setLang 调用:语言切换后重建动态内容
+    window.bkRefresh = function(){ fillItems(true); syncHours(); render(); };
+
+    fillItems(false); syncHours(); render();
   }
 
   // 点击复制(小红书号 / 微信号)
