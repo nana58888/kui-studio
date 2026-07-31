@@ -168,6 +168,15 @@
   }
   .tier .spec p+p{margin-top:10px}
 
+  /* 档位「更多样片」 */
+  .tier-more{
+    display:inline-block;margin-top:18px;
+    border:1px solid var(--line);padding:9px 15px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ink);
+    transition:background .18s ease,color .18s ease,border-color .18s ease;
+  }
+  .tier-more:hover{background:var(--ink);border-color:var(--ink);color:var(--white)}
+
   /* 价格行:虚线引导线 */
   .rows{border-top:1px solid var(--line)}
   .row{
@@ -270,6 +279,33 @@
   .bk-checks{display:flex;flex-direction:column;gap:10px}
   .bk-check{display:flex;align-items:flex-start;gap:9px;cursor:pointer;font-size:13px;color:rgba(251,251,249,.78);line-height:1.45}
   .bk-check input{width:15px;height:15px;flex-shrink:0;margin-top:2px;padding:0;accent-color:var(--red)}
+
+  /* 参考图 */
+  .bk-ref{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:2px}
+  .bk-file{
+    flex-shrink:0;cursor:pointer;border:1px solid rgba(251,251,249,.28);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--white);
+    padding:10px 14px;transition:background .18s ease,color .18s ease;
+  }
+  .bk-file:hover{background:var(--white);color:var(--ink)}
+  .bk-thumbs{display:flex;flex-wrap:wrap;gap:7px}
+  .bk-thumbs:empty{display:none}
+  .bk-thumbs img{
+    width:62px;height:62px;object-fit:cover;
+    border:1px solid rgba(251,251,249,.24);background:rgba(22,24,26,.5);
+  }
+  .bk-clear{
+    align-self:flex-start;cursor:pointer;background:none;
+    border:1px solid rgba(226,61,43,.55);color:var(--red);
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:7px 12px;
+    transition:background .18s ease,color .18s ease;
+  }
+  .bk-clear:hover{background:var(--red);color:var(--white)}
+  .bk-remind{
+    margin-top:10px;padding:10px 12px;
+    background:rgba(226,61,43,.1);border-left:2px solid var(--red);
+    font-size:12px;color:var(--ink);line-height:1.5;
+  }
 
   /* 估价面板 */
   .bk-sum{background:var(--white);color:var(--ink);padding:24px 22px;position:sticky;top:56px}
@@ -432,6 +468,7 @@
             <p><b data-zh="适合" data-en="BEST FOR">适合</b><span data-zh="想轻松记录伦敦日常、旅行探店、毕业打卡;或朋友、对象拍照不出片,需要有审美的人陪你边逛边拍。" data-en="Everyday London, café hopping, graduation snaps — or when your friend just can't get a good shot of you.">想轻松记录伦敦日常、旅行探店、毕业打卡;或朋友、对象拍照不出片,需要有审美的人陪你边逛边拍。</span></p>
             <p><b data-zh="特点" data-en="HOW IT WORKS">特点</b><span data-zh="按小时计费,熟悉城市里好拍好玩的机位;自然抓拍、生活纪实风格,底片全送。" data-en="Hourly. We know the spots. Candid, documentary style. All raws included.">按小时计费,熟悉城市里好拍好玩的机位;自然抓拍、生活纪实风格,底片全送。</span></p>
           </div>
+          <a class="tier-more" href="https://instagram.com/kui.studio_" target="_blank" rel="noopener" data-zh="更多样片 →" data-en="MORE WORK →">更多样片 →</a>
         </div>
         <div class="rows">
           <div class="row">
@@ -468,6 +505,7 @@
             <p><b data-zh="适合" data-en="BEST FOR">适合</b><span data-zh="对画面质感与构图叙事有要求、有氛围的人像 / 情侣 / 毕业 / 婚纱,对原片有品质要求。" data-en="Portraits, couples, graduation and wedding shoots where the mood and the frame have to be right.">对画面质感与构图叙事有要求、有氛围的人像 / 情侣 / 毕业 / 婚纱,对原片有品质要求。</span></p>
             <p><b data-zh="特点" data-en="HOW IT WORKS">特点</b><span data-zh="扎实技术 + 稳定审美的专业摄影师亲自把控;全程动作与表情指导;提供穿搭与地点建议,强调光影质感与构图叙事。" data-en="A professional runs the shoot end to end. Posing and expression coached throughout, plus styling and location advice.">扎实技术 + 稳定审美的专业摄影师亲自把控;全程动作与表情指导;提供穿搭与地点建议,强调光影质感与构图叙事。</span></p>
           </div>
+          <a class="tier-more" href="https://instagram.com/kui.studio_" target="_blank" rel="noopener" data-zh="更多样片 →" data-en="MORE WORK →">更多样片 →</a>
         </div>
         <div class="rows">
           <div class="row">
@@ -511,6 +549,7 @@
             <p><b data-zh="适合" data-en="BEST FOR">适合</b><span data-zh="想要高阶审美、玩转网感;博主内容、重要时刻、品牌写真,喜欢小葵的拍摄风格与灵感创作。" data-en="Creator content, brand portraits and moments that matter — for people who want a strong point of view.">想要高阶审美、玩转网感;博主内容、重要时刻、品牌写真,喜欢小葵的拍摄风格与灵感创作。</span></p>
             <p><b data-zh="特点" data-en="HOW IT WORKS">特点</b><span data-zh="艺术家背景摄影师——不只记录长相,更懂塑造气质、提升素人颜值,主打原图直出的自然美;1 对 1 分享伦敦机位与旅拍经验。" data-en="An artist-trained photographer who shapes how you come across, not just how you look. Straight-out-of-camera naturalism, plus one-to-one location knowledge.">艺术家背景摄影师——不只记录长相,更懂塑造气质、提升素人颜值,主打原图直出的自然美;1 对 1 分享伦敦机位与旅拍经验。</span></p>
           </div>
+          <a class="tier-more" href="https://instagram.com/kui.studio_" target="_blank" rel="noopener" data-zh="更多样片 →" data-en="MORE WORK →">更多样片 →</a>
         </div>
         <div class="rows">
           <div class="row">
@@ -638,7 +677,7 @@
     <dl class="terms">
       <div class="term">
         <dt data-zh="计费准则" data-en="DEPOSIT">计费准则</dt>
-        <dd data-zh="基础陪拍 / 专业摄影师 / 特色套餐:订金为总价的 <b>30%</b>。首席摄影师:订金为 <b>£70 / 小时</b>(包天订金 <b>£250</b>)。订金需提前支付以锁定档期,余款拍摄前结清。" data-en="Standard, Professional and Signature Sets: deposit is <b>30%</b> of the total. Chief Photographer: deposit is <b>£70 per hour</b> (<b>£250</b> for a full day). The deposit holds your date; the balance is settled before the shoot.">基础陪拍 / 专业摄影师 / 特色套餐:订金为总价的 <b>30%</b>。首席摄影师:订金为 <b>£70 / 小时</b>(包天订金 <b>£250</b>)。订金需提前支付以锁定档期,余款拍摄前结清。</dd>
+        <dd data-zh="基础陪拍 / 专业摄影师 / 特色套餐:订金为总价的 <b>30%</b>。首席摄影师:订金为 <b>£70 / 小时</b>(包天订金 <b>£250</b>)。订金需提前支付以锁定档期,余款在<b>交付照片前</b>结清。" data-en="Standard, Professional and Signature Sets: deposit is <b>30%</b> of the total. Chief Photographer: deposit is <b>£70 per hour</b> (<b>£250</b> for a full day). The deposit holds your date; the balance is settled <b>before your photos are delivered</b>.">基础陪拍 / 专业摄影师 / 特色套餐:订金为总价的 <b>30%</b>。首席摄影师:订金为 <b>£70 / 小时</b>(包天订金 <b>£250</b>)。订金需提前支付以锁定档期,余款在<b>交付照片前</b>结清。</dd>
       </div>
       <div class="term">
         <dt data-zh="关于时长" data-en="TIMING">关于时长</dt>
@@ -689,7 +728,7 @@
 <section class="band contact" id="contact">
   <div class="wrap">
     <p class="label" data-zh="预约 / BOOKING" data-en="BOOKING">预约 / BOOKING</p>
-    <h2 data-zh="档期一般提前两周排满。" data-en="The calendar usually fills two weeks out.">档期一般提前两周排满。</h2>
+    <h2 data-zh="档期一般提前 3–5 天排满。" data-en="The calendar usually fills 3–5 days out.">档期一般提前 3–5 天排满。</h2>
     <p class="lede" style="color:rgba(251,251,249,.7)" data-zh="填一下想拍的内容和日期,右边会实时算出预估价和订金。填完点「生成预约信息」,把生成的那段发给我们任一联系方式,我们确认档期、收订金,就算约上了。" data-en="Tell us what you want and when. The estimate and deposit update live. Generate the summary, send it to us on any channel below, and we'll confirm the slot and take the deposit.">填一下想拍的内容和日期,右边会实时算出预估价和订金。</p>
 
     <div class="booking">
@@ -718,9 +757,9 @@
             <label for="bkTier"><span data-zh="想选哪个档位" data-en="WHICH TIER">想选哪个档位</span> <span class="req">*</span></label>
             <select id="bkTier" name="tier">
               <option value="" data-zh="— 请选择 —" data-en="— Select —">— 请选择 —</option>
-              <option value="standard" data-zh="基础陪拍 Standard" data-en="Standard Companion">基础陪拍 Standard</option>
-              <option value="pro" data-zh="专业摄影师 Professional" data-en="Professional">专业摄影师 Professional</option>
               <option value="chief" data-zh="首席摄影师 Chief" data-en="Chief Photographer">首席摄影师 Chief</option>
+              <option value="pro" data-zh="专业摄影师 Professional" data-en="Professional">专业摄影师 Professional</option>
+              <option value="standard" data-zh="基础陪拍 Standard" data-en="Standard Companion">基础陪拍 Standard</option>
               <option value="set" data-zh="特色套餐 Signature Set" data-en="Signature Set">特色套餐 Signature Set</option>
             </select>
           </div>
@@ -733,7 +772,7 @@
           <div class="bk-field">
             <label for="bkDate"><span data-zh="想约哪天" data-en="PREFERRED DATE">想约哪天</span> <span class="req">*</span></label>
             <input type="date" id="bkDate" name="date">
-            <p class="bk-hint" data-zh="档期一般提前两周排满,越早越好定。" data-en="We usually fill up two weeks ahead.">档期一般提前两周排满,越早越好定。</p>
+            <p class="bk-hint" data-zh="档期一般提前 3–5 天排满,越早越好定。" data-en="We usually fill up 3–5 days ahead.">档期一般提前 3–5 天排满,越早越好定。</p>
           </div>
 
           <div class="bk-field">
@@ -743,6 +782,7 @@
               <option value="am" data-zh="上午" data-en="Morning">上午</option>
               <option value="pm" data-zh="下午" data-en="Afternoon">下午</option>
               <option value="golden" data-zh="傍晚(黄金时刻)" data-en="Golden hour">傍晚(黄金时刻)</option>
+              <option value="blue" data-zh="蓝调 / 天黑后" data-en="Blue hour / after dark">蓝调 / 天黑后</option>
             </select>
           </div>
 
@@ -764,6 +804,19 @@
           </div>
 
           <div class="bk-field full">
+            <p class="bk-legend" data-zh="参考图 REFERENCES" data-en="REFERENCES">参考图 REFERENCES</p>
+            <input type="text" id="bkRefLink" name="reflink" data-zh-ph="贴小红书 / Instagram 帖子链接,多个用空格隔开" data-en-ph="Paste Xiaohongshu / Instagram post links, separated by spaces" placeholder="贴小红书 / Instagram 帖子链接,多个用空格隔开">
+            <div class="bk-ref">
+              <label class="bk-file" for="bkRefs" data-zh="＋ 选择参考图" data-en="＋ CHOOSE IMAGES">＋ 选择参考图</label>
+              <input type="file" id="bkRefs" name="refs" accept="image/*" multiple hidden>
+              <span class="bk-hint" id="bkRefCount"></span>
+            </div>
+            <div class="bk-thumbs" id="bkThumbs"></div>
+            <button type="button" class="bk-clear" id="bkRefClear" hidden data-zh="清空参考图" data-en="CLEAR IMAGES">清空参考图</button>
+            <p class="bk-hint" data-zh="图片只在你自己的浏览器里预览,不会上传到网站。发消息给我们时,把它们和预约信息一起发过来就行。" data-en="Images preview on your device only — nothing is uploaded. Just attach them alongside your request when you message us.">图片只在你自己的浏览器里预览,不会上传到网站。发消息给我们时,把它们和预约信息一起发过来就行。</p>
+          </div>
+
+          <div class="bk-field full">
             <p class="bk-legend" data-zh="加项 ADD-ONS" data-en="ADD-ONS">加项 ADD-ONS</p>
             <div class="bk-addons">
               <div class="bk-field">
@@ -778,6 +831,7 @@
                 <p class="bk-legend" style="letter-spacing:.08em" data-zh="其他" data-en="Other">其他</p>
                 <div class="bk-checks">
                   <label class="bk-check"><input type="checkbox" id="bkHmua" name="hmua"><span data-zh="想加妆造(详情咨询)" data-en="Add hair &amp; makeup (on request)">想加妆造(详情咨询)</span></label>
+                  <label class="bk-check"><input type="checkbox" id="bkWardrobe" name="wardrobe"><span data-zh="想租 / 买衣服(详情咨询)" data-en="Rent or buy an outfit (on request)">想租 / 买衣服(详情咨询)</span></label>
                   <label class="bk-check" id="bkHmua2Wrap" hidden><input type="checkbox" id="bkHmua2" name="hmua2"><span data-zh="第二人妆发 +£80" data-en="Hair &amp; makeup for 2nd person +£80">第二人妆发 +£80</span></label>
                   <label class="bk-check"><input type="checkbox" id="bkReturning" name="returning"><span data-zh="回头客 / 朋友推荐(9.5 折)" data-en="Returning client or referral (5% off)">回头客 / 朋友推荐(9.5 折)</span></label>
                 </div>
@@ -849,6 +903,7 @@
             </div>
 
           </div>
+          <p class="bk-remind" id="bkRefRemind" hidden></p>
           <p class="bk-note" data-zh="我们确认档期后再收订金,不用现在付款。" data-en="We'll confirm the date before taking any deposit — nothing to pay now.">我们确认档期后再收订金,不用现在付款。</p>
         </div>
       </aside>
@@ -1064,7 +1119,8 @@
       return {
         tier:t, item:it, people:people, hours:hours, lines:lines,
         total:total, dep:dep, depNote:depNote,
-        hmua: $('bkHmua').checked
+        hmua: $('bkHmua').checked,
+        wardrobe: $('bkWardrobe').checked
       };
     }
 
@@ -1089,13 +1145,16 @@
         b.textContent = (l.v < 0 ? '−' : '') + money(Math.abs(l.v));
         d.appendChild(a); d.appendChild(b); box.appendChild(d);
       });
-      if(r.hmua){
+      var ask = [];
+      if(r.hmua) ask.push(T('妆造','Hair & makeup'));
+      if(r.wardrobe) ask.push(T('租 / 买衣服','Outfit rental or purchase'));
+      ask.forEach(function(name){
         var d2 = document.createElement('div'); d2.className='bk-line';
-        var a2 = document.createElement('span'); a2.className='k'; a2.textContent = T('妆造','Hair & makeup');
+        var a2 = document.createElement('span'); a2.className='k'; a2.textContent = name;
         var b2 = document.createElement('span'); b2.className='v'; b2.style.color='#E23D2B';
         b2.textContent = T('详情咨询','ON REQUEST');
         d2.appendChild(a2); d2.appendChild(b2); box.appendChild(d2);
-      }
+      });
       $('bkTotal').textContent = money(r.total);
       $('bkDeposit').textContent = money(r.dep);
       $('bkDepNote').textContent = r.depNote + T(' 以上为网站预估,最终报价以确认时为准。',
@@ -1119,12 +1178,17 @@
       L2.push((zh?'人数:':'People: ') + r.people + (zh?' 人':''));
       var place = $('bkPlace').value.trim();
       if(place) L2.push((zh?'地点:':'Location: ') + place);
+      var rl = $('bkRefLink').value.trim();
+      if(rl) L2.push((zh?'参考图链接:':'Reference links: ') + rl);
+      if(refFiles.length) L2.push((zh?'参考图:':'Reference images: ') + refFiles.length +
+        (zh?' 张(随这条消息一起发送)':' attached with this message'));
       L2.push('');
       L2.push(zh ? '— 预估 —' : '— Estimate —');
       r.lines.forEach(function(l){
         L2.push('  ' + l.k + '  ' + (l.v<0?'−':'') + money(Math.abs(l.v)));
       });
       if(r.hmua) L2.push('  ' + (zh?'妆造  详情咨询':'Hair & makeup  on request'));
+      if(r.wardrobe) L2.push('  ' + (zh?'租 / 买衣服  详情咨询':'Outfit rental or purchase  on request'));
       L2.push((zh?'预估总价:':'Est. total: ') + money(r.total));
       L2.push((zh?'预估订金:':'Est. deposit: ') + money(r.dep));
       var notes = $('bkNotes').value.trim();
@@ -1133,6 +1197,38 @@
       L2.push(zh ? '(以上为网站自动预估,以确认为准)' : '(Auto-estimated on the website; subject to confirmation)');
       return L2.join('\n');
     }
+
+    // ---- 参考图:仅本地预览,不上传 ----
+    var refFiles = [];
+    function renderThumbs(){
+      var box = $('bkThumbs');
+      Array.prototype.forEach.call(box.querySelectorAll('img'), function(im){ URL.revokeObjectURL(im.src); });
+      box.innerHTML = '';
+      refFiles.forEach(function(f){
+        var im = document.createElement('img');
+        im.src = URL.createObjectURL(f);
+        im.alt = f.name;
+        box.appendChild(im);
+      });
+      $('bkRefClear').hidden = refFiles.length === 0;
+      $('bkRefCount').textContent = refFiles.length
+        ? T('已选 ' + refFiles.length + ' 张(最多 6 张)', refFiles.length + ' selected (max 6)')
+        : T('最多 6 张','Up to 6');
+      var rm = $('bkRefRemind');
+      if(rm){
+        rm.hidden = refFiles.length === 0;
+        rm.textContent = T('别忘了把这 ' + refFiles.length + ' 张参考图一起发给我们。',
+                           "Don't forget to attach your " + refFiles.length + ' reference image(s).');
+      }
+    }
+    $('bkRefs').addEventListener('change', function(){
+      var picked = Array.prototype.slice.call(this.files || []);
+      refFiles = picked.filter(function(f){ return /^image\//.test(f.type); }).slice(0, 6);
+      renderThumbs();
+    });
+    $('bkRefClear').addEventListener('click', function(){
+      refFiles = []; $('bkRefs').value = ''; renderThumbs();
+    });
 
     function markBad(el, bad){ el.classList.toggle('bk-bad', !!bad); }
 
@@ -1205,9 +1301,9 @@
     bkForm.addEventListener('change', function(){ syncHours(); render(); });
 
     // 供 setLang 调用:语言切换后重建动态内容
-    window.bkRefresh = function(){ fillItems(true); syncHours(); render(); };
+    window.bkRefresh = function(){ fillItems(true); syncHours(); renderThumbs(); render(); };
 
-    fillItems(false); syncHours(); render();
+    fillItems(false); syncHours(); renderThumbs(); render();
   }
 
   // 点击复制(小红书号 / 微信号)
