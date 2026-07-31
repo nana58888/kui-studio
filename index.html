@@ -30,6 +30,8 @@
     --mono:'IBM Plex Mono',monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  /* 作者样式里的 display 会压过浏览器默认的 [hidden]{display:none},故显式声明 */
+  [hidden]{display:none!important}
   html{scroll-behavior:smooth}
   body{
     background:var(--card);color:var(--ink);
@@ -924,8 +926,9 @@
       {id:'camera',zh:'专业相机 · £150/小时', en:'Camera · £150/hr', kind:'hr', rate:150, min:1, combo:{h:2, price:295}},
       {id:'film',  zh:'胶片氛围方案 一卷 36 张 · £200', en:'Film · one 36-exp roll · £200', kind:'flat', price:200, hours:1},
       {id:'video', zh:'抖音 / Reels 短视频 · £150', en:'Douyin / Reels video · £150', kind:'flat', price:150, hours:1},
-      {id:'dayc',  zh:'尊享包天 5h · 相机 · £600', en:'Full Day 5h · Camera · £600', kind:'flat', price:600, hours:5, grp:750, isDay:true},
-      {id:'dayp',  zh:'尊享包天 5h · 手机 · £500', en:'Full Day 5h · Phone · £500', kind:'flat', price:500, hours:5, grp:750, isDay:true}
+      /* 包天基础价已含 2 人;超过 2 人整体切大团体价 £750,不再叠加人头费 */
+      {id:'dayc',  zh:'尊享包天 5h · 相机 · £600', en:'Full Day 5h · Camera · £600', kind:'flat', price:600, hours:5, base:2, grp:750, isDay:true},
+      {id:'dayp',  zh:'尊享包天 5h · 手机 · £500', en:'Full Day 5h · Phone · £500', kind:'flat', price:500, hours:5, base:2, grp:750, isDay:true}
     ]},
     set:{ zh:'特色套餐', en:'Signature Set', dep:{kind:'pct', pct:.30}, items:[
       {id:'grad', zh:'毕业写真 2 小时 · £499', en:'Graduation · 2h · £499', kind:'flat', price:499, hours:2, base:1},
