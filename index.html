@@ -280,33 +280,6 @@
   .bk-check{display:flex;align-items:flex-start;gap:9px;cursor:pointer;font-size:13px;color:rgba(251,251,249,.78);line-height:1.45}
   .bk-check input{width:15px;height:15px;flex-shrink:0;margin-top:2px;padding:0;accent-color:var(--red)}
 
-  /* 参考图 */
-  .bk-ref{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:2px}
-  .bk-file{
-    flex-shrink:0;cursor:pointer;border:1px solid rgba(251,251,249,.28);
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--white);
-    padding:10px 14px;transition:background .18s ease,color .18s ease;
-  }
-  .bk-file:hover{background:var(--white);color:var(--ink)}
-  .bk-thumbs{display:flex;flex-wrap:wrap;gap:7px}
-  .bk-thumbs:empty{display:none}
-  .bk-thumbs img{
-    width:62px;height:62px;object-fit:cover;
-    border:1px solid rgba(251,251,249,.24);background:rgba(22,24,26,.5);
-  }
-  .bk-clear{
-    align-self:flex-start;cursor:pointer;background:none;
-    border:1px solid rgba(226,61,43,.55);color:var(--red);
-    font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:7px 12px;
-    transition:background .18s ease,color .18s ease;
-  }
-  .bk-clear:hover{background:var(--red);color:var(--white)}
-  .bk-remind{
-    margin-top:10px;padding:10px 12px;
-    background:rgba(226,61,43,.1);border-left:2px solid var(--red);
-    font-size:12px;color:var(--ink);line-height:1.5;
-  }
-
   /* 估价面板 */
   .bk-sum{background:var(--white);color:var(--ink);padding:24px 22px;position:sticky;top:56px}
   .bk-sum h3{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--grey);font-weight:500;margin-bottom:14px}
@@ -804,16 +777,9 @@
           </div>
 
           <div class="bk-field full">
-            <p class="bk-legend" data-zh="参考图 REFERENCES" data-en="REFERENCES">参考图 REFERENCES</p>
+            <label for="bkRefLink"><span data-zh="参考图链接" data-en="REFERENCE LINKS">参考图链接</span></label>
             <input type="text" id="bkRefLink" name="reflink" data-zh-ph="贴小红书 / Instagram 帖子链接,多个用空格隔开" data-en-ph="Paste Xiaohongshu / Instagram post links, separated by spaces" placeholder="贴小红书 / Instagram 帖子链接,多个用空格隔开">
-            <div class="bk-ref">
-              <label class="bk-file" for="bkRefs" data-zh="＋ 选择参考图" data-en="＋ CHOOSE IMAGES">＋ 选择参考图</label>
-              <input type="file" id="bkRefs" name="refs" accept="image/*" multiple hidden>
-              <span class="bk-hint" id="bkRefCount"></span>
-            </div>
-            <div class="bk-thumbs" id="bkThumbs"></div>
-            <button type="button" class="bk-clear" id="bkRefClear" hidden data-zh="清空参考图" data-en="CLEAR IMAGES">清空参考图</button>
-            <p class="bk-hint" data-zh="图片只在你自己的浏览器里预览,不会上传到网站。发消息给我们时,把它们和预约信息一起发过来就行。" data-en="Images preview on your device only — nothing is uploaded. Just attach them alongside your request when you message us.">图片只在你自己的浏览器里预览,不会上传到网站。发消息给我们时,把它们和预约信息一起发过来就行。</p>
+            <p class="bk-hint" data-zh="有想要的风格,贴几个链接给我们;也可以在私信里直接把参考图发过来。" data-en="Got a look in mind? Paste a few links — or just send the images to us in your message.">有想要的风格,贴几个链接给我们;也可以在私信里直接把参考图发过来。</p>
           </div>
 
           <div class="bk-field full">
@@ -903,7 +869,6 @@
             </div>
 
           </div>
-          <p class="bk-remind" id="bkRefRemind" hidden></p>
           <p class="bk-note" data-zh="我们确认档期后再收订金,不用现在付款。" data-en="We'll confirm the date before taking any deposit — nothing to pay now.">我们确认档期后再收订金,不用现在付款。</p>
         </div>
       </aside>
@@ -1180,8 +1145,6 @@
       if(place) L2.push((zh?'地点:':'Location: ') + place);
       var rl = $('bkRefLink').value.trim();
       if(rl) L2.push((zh?'参考图链接:':'Reference links: ') + rl);
-      if(refFiles.length) L2.push((zh?'参考图:':'Reference images: ') + refFiles.length +
-        (zh?' 张(随这条消息一起发送)':' attached with this message'));
       L2.push('');
       L2.push(zh ? '— 预估 —' : '— Estimate —');
       r.lines.forEach(function(l){
@@ -1197,38 +1160,6 @@
       L2.push(zh ? '(以上为网站自动预估,以确认为准)' : '(Auto-estimated on the website; subject to confirmation)');
       return L2.join('\n');
     }
-
-    // ---- 参考图:仅本地预览,不上传 ----
-    var refFiles = [];
-    function renderThumbs(){
-      var box = $('bkThumbs');
-      Array.prototype.forEach.call(box.querySelectorAll('img'), function(im){ URL.revokeObjectURL(im.src); });
-      box.innerHTML = '';
-      refFiles.forEach(function(f){
-        var im = document.createElement('img');
-        im.src = URL.createObjectURL(f);
-        im.alt = f.name;
-        box.appendChild(im);
-      });
-      $('bkRefClear').hidden = refFiles.length === 0;
-      $('bkRefCount').textContent = refFiles.length
-        ? T('已选 ' + refFiles.length + ' 张(最多 6 张)', refFiles.length + ' selected (max 6)')
-        : T('最多 6 张','Up to 6');
-      var rm = $('bkRefRemind');
-      if(rm){
-        rm.hidden = refFiles.length === 0;
-        rm.textContent = T('别忘了把这 ' + refFiles.length + ' 张参考图一起发给我们。',
-                           "Don't forget to attach your " + refFiles.length + ' reference image(s).');
-      }
-    }
-    $('bkRefs').addEventListener('change', function(){
-      var picked = Array.prototype.slice.call(this.files || []);
-      refFiles = picked.filter(function(f){ return /^image\//.test(f.type); }).slice(0, 6);
-      renderThumbs();
-    });
-    $('bkRefClear').addEventListener('click', function(){
-      refFiles = []; $('bkRefs').value = ''; renderThumbs();
-    });
 
     function markBad(el, bad){ el.classList.toggle('bk-bad', !!bad); }
 
@@ -1301,9 +1232,9 @@
     bkForm.addEventListener('change', function(){ syncHours(); render(); });
 
     // 供 setLang 调用:语言切换后重建动态内容
-    window.bkRefresh = function(){ fillItems(true); syncHours(); renderThumbs(); render(); };
+    window.bkRefresh = function(){ fillItems(true); syncHours(); render(); };
 
-    fillItems(false); syncHours(); renderThumbs(); render();
+    fillItems(false); syncHours(); render();
   }
 
   // 点击复制(小红书号 / 微信号)
